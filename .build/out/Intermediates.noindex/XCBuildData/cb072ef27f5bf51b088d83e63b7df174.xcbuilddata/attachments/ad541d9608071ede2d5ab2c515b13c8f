@@ -1,0 +1,56 @@
+{
+  "" : {
+    "const-values" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitFlow-primary.swiftconstvalues",
+    "dependencies" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitFlow-primary.d",
+    "diagnostics" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitFlow-primary.dia",
+    "emit-module-dependencies" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitFlow-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitFlow-primary-emit-module.dia",
+    "pch" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitFlow-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitFlow-primary.swiftdeps"
+  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/HabitFlowApp.swift" : {
+    "index-unit-output-path" : "/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitFlowApp.o",
+    "llvm-bc" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitFlowApp.bc",
+    "object" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitFlowApp.o"
+  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Models/Models.swift" : {
+    "index-unit-output-path" : "/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/Models.o",
+    "llvm-bc" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/Models.bc",
+    "object" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/Models.o"
+  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Services/HabitStore.swift" : {
+    "index-unit-output-path" : "/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitStore.o",
+    "llvm-bc" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitStore.bc",
+    "object" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitStore.o"
+  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/CalendarAndStatisticsView.swift" : {
+    "index-unit-output-path" : "/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/CalendarAndStatisticsView.o",
+    "llvm-bc" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/CalendarAndStatisticsView.bc",
+    "object" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/CalendarAndStatisticsView.o"
+  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/DashboardView.swift" : {
+    "index-unit-output-path" : "/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/DashboardView.o",
+    "llvm-bc" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/DashboardView.bc",
+    "object" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/DashboardView.o"
+  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/HabitEditorAndMyHabitsView.swift" : {
+    "index-unit-output-path" : "/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitEditorAndMyHabitsView.o",
+    "llvm-bc" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitEditorAndMyHabitsView.bc",
+    "object" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/HabitEditorAndMyHabitsView.o"
+  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/MainWindowView.swift" : {
+    "index-unit-output-path" : "/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/MainWindowView.o",
+    "llvm-bc" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/MainWindowView.bc",
+    "object" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/MainWindowView.o"
+  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/SettingsView.swift" : {
+    "index-unit-output-path" : "/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/SettingsView.o"
+  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/TodaysGoalsAndMissedView.swift" : {
+    "index-unit-output-path" : "/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/TodaysGoalsAndMissedView.o",
+    "llvm-bc" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/TodaysGoalsAndMissedView.bc",
+    "object" : "/Users/m/Downloads/HabitFlow/.build/out/Intermediates.noindex/HabitFlow.build/Release/HabitFlow-p.build/Objects-normal/arm64/TodaysGoalsAndMissedView.o"
+  }
+}

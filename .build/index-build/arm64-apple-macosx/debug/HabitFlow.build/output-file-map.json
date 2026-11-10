@@ -1,0 +1,59 @@
+{
+  "": {
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/primary.swiftdeps"
+  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/HabitFlowApp.swift": {
+    "dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitFlowApp.d",
+    "object": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitFlowApp.swift.o",
+    "swiftmodule": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitFlowApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitFlowApp.swiftdeps",
+    "diagnostics": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitFlowApp.dia"  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Models/Models.swift": {
+    "dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/Models.d",
+    "object": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/Models.swift.o",
+    "swiftmodule": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/Models~partial.swiftmodule",
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/Models.swiftdeps",
+    "diagnostics": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/Models.dia"  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Services/HabitStore.swift": {
+    "dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitStore.d",
+    "object": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitStore.swift.o",
+    "swiftmodule": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitStore~partial.swiftmodule",
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitStore.swiftdeps",
+    "diagnostics": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitStore.dia"  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/CalendarAndStatisticsView.swift": {
+    "dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/CalendarAndStatisticsView.d",
+    "object": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/CalendarAndStatisticsView.swift.o",
+    "swiftmodule": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/CalendarAndStatisticsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/CalendarAndStatisticsView.swiftdeps",
+    "diagnostics": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/CalendarAndStatisticsView.dia"  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/DashboardView.swift": {
+    "dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/DashboardView.d",
+    "object": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/DashboardView.swift.o",
+    "swiftmodule": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/DashboardView~partial.swiftmodule",
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/DashboardView.swiftdeps",
+    "diagnostics": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/DashboardView.dia"  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/HabitEditorAndMyHabitsView.swift": {
+    "dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitEditorAndMyHabitsView.d",
+    "object": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitEditorAndMyHabitsView.swift.o",
+    "swiftmodule": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitEditorAndMyHabitsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitEditorAndMyHabitsView.swiftdeps",
+    "diagnostics": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/HabitEditorAndMyHabitsView.dia"  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/MainWindowView.swift": {
+    "dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/MainWindowView.d",
+    "object": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/MainWindowView.swift.o",
+    "swiftmodule": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/MainWindowView~partial.swiftmodule",
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/MainWindowView.swiftdeps",
+    "diagnostics": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/MainWindowView.dia"  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/SettingsView.swift": {
+    "dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/SettingsView.d",
+    "object": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/SettingsView.swift.o",
+    "swiftmodule": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/SettingsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/SettingsView.swiftdeps",
+    "diagnostics": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/SettingsView.dia"  },
+  "/Users/m/Downloads/HabitFlow/Sources/HabitFlow/Views/TodaysGoalsAndMissedView.swift": {
+    "dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/TodaysGoalsAndMissedView.d",
+    "object": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/TodaysGoalsAndMissedView.swift.o",
+    "swiftmodule": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/TodaysGoalsAndMissedView~partial.swiftmodule",
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/TodaysGoalsAndMissedView.swiftdeps",
+    "diagnostics": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlow.build/TodaysGoalsAndMissedView.dia"  }
+}

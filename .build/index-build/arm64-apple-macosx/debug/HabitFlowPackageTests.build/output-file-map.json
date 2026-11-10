@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlowPackageTests.build/primary.swiftdeps"
+  },
+  "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlowPackageTests.derived/runner.swift": {
+    "dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlowPackageTests.build/runner.d",
+    "object": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlowPackageTests.build/runner.swift.o",
+    "swiftmodule": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlowPackageTests.build/runner~partial.swiftmodule",
+    "swift-dependencies": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlowPackageTests.build/runner.swiftdeps",
+    "diagnostics": "/Users/m/Downloads/HabitFlow/.build/index-build/arm64-apple-macosx/debug/HabitFlowPackageTests.build/runner.dia"  }
+}
