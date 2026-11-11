@@ -9,6 +9,7 @@ public struct DashboardView: View {
     public let palette: HabitFlowPalette
     public let onAddHabit: () -> Void
     public let onEditHabit: (Habit) -> Void
+    public let onOpenAssistant: () -> Void
     public let onOpenAllMissedHistory: () -> Void
 
     @State private var expandedMissedDateKeys: Set<String> = []
@@ -18,11 +19,13 @@ public struct DashboardView: View {
         palette: HabitFlowPalette,
         onAddHabit: @escaping () -> Void,
         onEditHabit: @escaping (Habit) -> Void,
+        onOpenAssistant: @escaping () -> Void,
         onOpenAllMissedHistory: @escaping () -> Void
     ) {
         self.palette = palette
         self.onAddHabit = onAddHabit
         self.onEditHabit = onEditHabit
+        self.onOpenAssistant = onOpenAssistant
         self.onOpenAllMissedHistory = onOpenAllMissedHistory
     }
 
@@ -42,6 +45,8 @@ public struct DashboardView: View {
 
                 // 2. DAILY PROGRESS OVERVIEW: Compact daily completion percentage, completed/remaining counts, simple progress bar
                 dailyProgressOverviewCard
+
+                if !store.goals.isEmpty { savedGoalsSection }
 
                 // 3. TODAY'S HABITS: Clean minimalistic rows with inline quick-add controls
                 todaysHabitsSection
@@ -91,6 +96,12 @@ public struct DashboardView: View {
 
             Spacer()
 
+            Button(action: onOpenAssistant) {
+                Label("Assistant", systemImage: "sparkles")
+                    .font(.system(size: 13, weight: .semibold))
+            }
+            .buttonStyle(.bordered)
+
             Button(action: onAddHabit) {
                 HStack(spacing: 7) {
                     Image(systemName: "plus")
@@ -108,6 +119,23 @@ public struct DashboardView: View {
             }
             .buttonStyle(.plain)
         }
+    }
+
+    private var savedGoalsSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Мои цели").font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(palette.primaryText)
+            ForEach(store.goals) { goal in
+                HStack(alignment: .top) {
+                    Image(systemName: "target").foregroundStyle(palette.accent)
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(goal.title).font(.system(size: 14, weight: .semibold)).foregroundStyle(palette.primaryText)
+                        Text("\(goal.target.formatted()) \(goal.unit) · до \(goal.deadline) · \(goal.milestones.count) этапов")
+                            .font(.system(size: 12)).foregroundStyle(palette.secondaryText)
+                    }
+                    Spacer()
+                }.padding(12).background(palette.secondarySurface, in: RoundedRectangle(cornerRadius: 10))
+            }
+        }.habitFlowCard(palette: palette)
     }
 
     private var formattedDayAndDate: String {

@@ -5,6 +5,7 @@ import AppKit
 public struct HabitFlowApp: App {
     @StateObject private var store = HabitStore()
     @StateObject private var timerManager = ActiveHabitTimerManager()
+    @StateObject private var assistantHistory = AssistantChatStore()
 
     public init() {
         // Ensure bare SwiftPM executable shows in the Dock and brings its window to front
@@ -17,6 +18,7 @@ public struct HabitFlowApp: App {
             MainWindowView()
                 .environmentObject(store)
                 .environmentObject(timerManager)
+                .environmentObject(assistantHistory)
                 .frame(minWidth: 980, minHeight: 680)
                 .onAppear {
                     DispatchQueue.main.async {

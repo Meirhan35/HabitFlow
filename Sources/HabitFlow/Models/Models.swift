@@ -475,6 +475,7 @@ public struct HabitFlowBackupDocument: Codable {
     public var habits: [Habit]
     public var progressEntries: [ProgressEntry]
     public var dailyNotes: [DailyNote]
+    public var goals: [SavedGoal]?
 
     public init(
         schemaVersion: Int = 1,
@@ -482,7 +483,8 @@ public struct HabitFlowBackupDocument: Codable {
         settings: AppSettings,
         habits: [Habit],
         progressEntries: [ProgressEntry],
-        dailyNotes: [DailyNote]
+        dailyNotes: [DailyNote],
+        goals: [SavedGoal]? = nil
     ) {
         self.schemaVersion = schemaVersion
         self.exportedAt = exportedAt
@@ -490,6 +492,7 @@ public struct HabitFlowBackupDocument: Codable {
         self.habits = habits
         self.progressEntries = progressEntries
         self.dailyNotes = dailyNotes
+        self.goals = goals
     }
 }
 

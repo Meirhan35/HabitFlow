@@ -317,6 +317,9 @@ public final class HabitStore: ObservableObject {
     @Published public var dailyNotes: [DailyNote] {
         didSet { saveStateImmediately() }
     }
+    @Published public var goals: [SavedGoal] {
+        didSet { saveStateImmediately() }
+    }
 
     /// Current active local date key ("YYYY-MM-DD"). Automatically updates on midnight or system clock/timezone change.
     @Published public var currentDateKey: String
@@ -348,6 +351,7 @@ public final class HabitStore: ObservableObject {
         self.habits = []
         self.progressEntries = []
         self.dailyNotes = []
+        self.goals = []
 
         if !loadStateFromDisk() && seedSampleDataIfEmpty {
             seedDefaultShowcaseData(referenceTodayKey: resolvedToday)
@@ -409,7 +413,8 @@ public final class HabitStore: ObservableObject {
             settings: settings,
             habits: habits,
             progressEntries: progressEntries,
-            dailyNotes: dailyNotes
+            dailyNotes: dailyNotes,
+            goals: goals
         )
         do {
             let encoder = JSONEncoder()
@@ -435,6 +440,7 @@ public final class HabitStore: ObservableObject {
             self.habits = doc.habits
             self.progressEntries = doc.progressEntries
             self.dailyNotes = doc.dailyNotes
+            self.goals = doc.goals ?? []
             isSuppressingSave = false
             return true
         } catch {
@@ -451,7 +457,8 @@ public final class HabitStore: ObservableObject {
             settings: settings,
             habits: habits,
             progressEntries: progressEntries,
-            dailyNotes: dailyNotes
+            dailyNotes: dailyNotes,
+            goals: goals
         )
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
@@ -468,6 +475,7 @@ public final class HabitStore: ObservableObject {
         self.habits = doc.habits
         self.progressEntries = doc.progressEntries
         self.dailyNotes = doc.dailyNotes
+        self.goals = doc.goals ?? []
         isSuppressingSave = false
         saveStateImmediately()
         HabitNotificationScheduler.shared.syncNotifications(for: habits, globallyEnabled: settings.notificationsEnabled)

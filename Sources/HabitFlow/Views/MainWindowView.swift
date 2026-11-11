@@ -5,6 +5,7 @@ import SwiftUI
 public enum SidebarDestination: String, CaseIterable, Identifiable {
     case dashboard = "Dashboard"
     case myHabits = "My Habits"
+    case assistant = "Assistant"
     case todaysGoals = "Today's Goals"
     case missedAndUnfinished = "Missed & Unfinished"
     case calendar = "Calendar"
@@ -17,6 +18,7 @@ public enum SidebarDestination: String, CaseIterable, Identifiable {
         switch self {
         case .dashboard: return "square.grid.2x2.fill"
         case .myHabits: return "checklist"
+        case .assistant: return "bubble.left.and.text.bubble.right.fill"
         case .todaysGoals: return "target"
         case .missedAndUnfinished: return "clock.arrow.circlepath"
         case .calendar: return "calendar"
@@ -444,6 +446,7 @@ public struct MainWindowView: View {
                 palette: palette,
                 onAddHabit: { isPresentingCreateHabitModal = true },
                 onEditHabit: { habitBeingEdited = $0 },
+                onOpenAssistant: { selectedSection = .assistant },
                 onOpenAllMissedHistory: {
                     withAnimation(.easeInOut(duration: 0.2)) {
                         selectedSection = .missedAndUnfinished
@@ -457,6 +460,8 @@ public struct MainWindowView: View {
                 onEditHabit: { habitBeingEdited = $0 },
                 onInspectHabitStats: { habitForDetailedStats = $0 }
             )
+        case .assistant:
+            GoalAssistantView(palette: palette)
         case .todaysGoals:
             TodaysGoalsView(
                 palette: palette,

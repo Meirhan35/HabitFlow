@@ -12,7 +12,8 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "HabitFlow",
-            path: "Sources/HabitFlow"
+            path: "Sources/HabitFlow",
+            resources: [.process("Resources")]
         ),
         .testTarget(
             name: "HabitFlowTests",
