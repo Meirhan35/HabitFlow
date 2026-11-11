@@ -389,6 +389,7 @@ public enum AppAppearanceMode: String, Codable, CaseIterable, Identifiable {
 }
 
 public enum AccentThemeColor: String, Codable, CaseIterable, Identifiable {
+    case orange = "Orange"
     case indigo = "Indigo"
     case emerald = "Emerald"
     case sky = "Sky Blue"
@@ -399,16 +400,10 @@ public enum AccentThemeColor: String, Codable, CaseIterable, Identifiable {
 
     public var id: String { rawValue }
 
+    public static var allCases: [AccentThemeColor] { [.orange] }
+
     public var color: Color {
-        switch self {
-        case .indigo: return Color(red: 0.39, green: 0.40, blue: 0.95)
-        case .emerald: return Color(red: 0.06, green: 0.73, blue: 0.51)
-        case .sky: return Color(red: 0.05, green: 0.65, blue: 0.91)
-        case .amber: return Color(red: 0.96, green: 0.62, blue: 0.04)
-        case .rose: return Color(red: 0.96, green: 0.25, blue: 0.37)
-        case .violet: return Color(red: 0.55, green: 0.36, blue: 0.96)
-        case .teal: return Color(red: 0.08, green: 0.72, blue: 0.65)
-        }
+        Color(red: 252.0 / 255, green: 115.0 / 255, blue: 77.0 / 255)
     }
 }
 
@@ -438,8 +433,8 @@ public struct AppSettings: Codable, Equatable {
     public var dismissedRecoveryHabitIdsForDate: [String: [UUID]]
 
     public init(
-        appearanceMode: AppAppearanceMode = .dark,
-        accentColor: AccentThemeColor = .indigo,
+        appearanceMode: AppAppearanceMode = .system,
+        accentColor: AccentThemeColor = .orange,
         weekStartDay: WeekStartDay = .monday,
         defaultFrequency: HabitFrequency = .daily,
         notificationsEnabled: Bool = true,
@@ -541,7 +536,8 @@ public enum DateKeyHelper {
     public static func friendlyDateTitle(for dateKey: String, relativeTo todayKey: String, calendar: Calendar = .current) -> String {
         guard let targetDate = date(from: dateKey, calendar: calendar) else { return dateKey }
         let df = DateFormatter()
-        df.dateFormat = "MMMM d"
+        df.locale = L10n.locale
+        df.setLocalizedDateFormatFromTemplate("MMMM d")
         let monthDay = df.string(from: targetDate)
 
         if dateKey == todayKey {
@@ -550,7 +546,8 @@ public enum DateKeyHelper {
             return "Yesterday — \(monthDay)"
         } else {
             let fullDf = DateFormatter()
-            fullDf.dateFormat = "EEEE, MMMM d"
+        fullDf.locale = L10n.locale
+            fullDf.setLocalizedDateFormatFromTemplate("EEEE MMMM d")
             return fullDf.string(from: targetDate)
         }
     }

@@ -284,11 +284,11 @@ public final class HabitNotificationScheduler {
                 dateComponents.minute = habit.reminderMinute
 
                 let content = UNMutableNotificationContent()
-                content.title = "HabitFlow Reminder: \(habit.name)"
+                content.title = L10n.tr("HabitFlow Reminder: \(habit.name)")
                 if habit.measurementType == .checkbox {
-                    content.body = "Time to complete your daily goal: \(habit.name)."
+                    content.body = L10n.tr("Time to complete your daily goal: \(habit.name).")
                 } else {
-                    content.body = "Daily target: \(NumberFormattingHelper.format(habit.dailyTarget)) \(habit.unit). Stay consistent!"
+                    content.body = L10n.tr("Daily target: \(NumberFormattingHelper.format(habit.dailyTarget)) \(habit.unit). Stay consistent!")
                 }
                 content.sound = .default
 
@@ -437,6 +437,7 @@ public final class HabitStore: ObservableObject {
             let doc = try decoder.decode(HabitFlowBackupDocument.self, from: data)
             isSuppressingSave = true
             self.settings = doc.settings
+            self.settings.accentColor = .orange
             self.habits = doc.habits
             self.progressEntries = doc.progressEntries
             self.dailyNotes = doc.dailyNotes
@@ -472,6 +473,7 @@ public final class HabitStore: ObservableObject {
         let doc = try decoder.decode(HabitFlowBackupDocument.self, from: data)
         isSuppressingSave = true
         self.settings = doc.settings
+        self.settings.accentColor = .orange
         self.habits = doc.habits
         self.progressEntries = doc.progressEntries
         self.dailyNotes = doc.dailyNotes

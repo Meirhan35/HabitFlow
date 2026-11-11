@@ -1,0 +1,2102 @@
+{
+  "\nResponse language: ": {
+    "en": "\nResponse language: ",
+    "ru": "Язык ответа:"
+  },
+  " · обновить": {
+    "en": "· update",
+    "ru": " · обновить"
+  },
+  "%.1f hours total": {
+    "en": "%.1f hours total",
+    "ru": "%.1f часов всего"
+  },
+  "+ Custom": {
+    "en": "+ Custom",
+    "ru": "+ Пользовательский"
+  },
+  ". Use this language for message, questions and all plan descriptions. Preserve JSON schema keys and enum values.": {
+    "en": ". Use this language for message, questions and all plan descriptions. Preserve JSON schema keys and enum values.",
+    "ru": ". Используйте этот язык для сообщений, вопросов и всех описаний планов. Сохраняйте ключи схемы JSON и значения перечислений."
+  },
+  "1 scheduled habit remaining to complete today's goals.": {
+    "en": "1 scheduled habit remaining to complete today's goals.",
+    "ru": "Осталась 1 запланированная привычка для достижения сегодняшних целей."
+  },
+  "30 Days": {
+    "en": "30 Days",
+    "ru": "30 дней"
+  },
+  "365 Days": {
+    "en": "365 Days",
+    "ru": "365 дней"
+  },
+  "7 Days": {
+    "en": "7 Days",
+    "ru": "7 дней"
+  },
+  "90 Days": {
+    "en": "90 Days",
+    "ru": "90 дней"
+  },
+  "90 дней": {
+    "en": "90 days",
+    "ru": "90 дней"
+  },
+  "Add": {
+    "en": "Add",
+    "ru": "Добавить"
+  },
+  "Add Habit": {
+    "en": "Add Habit",
+    "ru": "Добавить привычку"
+  },
+  "Add Habit ⌘N": {
+    "en": "Add Habit ⌘N",
+    "ru": "Добавить привычку ⌘N"
+  },
+  "Add Specific Session Entry": {
+    "en": "Add Specific Session Entry",
+    "ru": "Добавить конкретную запись сеанса"
+  },
+  "Afternoon": {
+    "en": "Afternoon",
+    "ru": "Полдень"
+  },
+  "Afternoon schedule was packed; still have 25 minutes of reading left.": {
+    "en": "Afternoon schedule was packed; still have 25 minutes of reading left.",
+    "ru": "Послеобеденное расписание было насыщенным; осталось еще 25 минут чтения."
+  },
+  "All": {
+    "en": "All",
+    "ru": "Все"
+  },
+  "All Day": {
+    "en": "All Day",
+    "ru": "Весь день"
+  },
+  "All Time": {
+    "en": "All Time",
+    "ru": "Все время"
+  },
+  "All Unfinished": {
+    "en": "All Unfinished",
+    "ru": "Все незавершенное"
+  },
+  "All active habits are maintaining 85%+ consistency!": {
+    "en": "All active habits are maintaining 85%+ consistency!",
+    "ru": "Регулярность всех активных привычек выше 85%!"
+  },
+  "All habits, historical target changes, progress entries, and daily notes are saved locally offline.": {
+    "en": "All habits, historical target changes, progress entries, and daily notes are saved locally offline.",
+    "ru": "Все привычки, исторические изменения целей, записи о прогрессе и ежедневные заметки сохраняются локально в автономном режиме."
+  },
+  "All of today's scheduled habits are complete. Great consistency!": {
+    "en": "All of today's scheduled habits are complete. Great consistency!",
+    "ru": "Все привычки на сегодня выполнены. Отличная регулярность!"
+  },
+  "All scheduled goals for today have been completed!": {
+    "en": "All scheduled goals for today have been completed!",
+    "ru": "Все запланированные цели на сегодня выполнены!"
+  },
+  "Amber": {
+    "en": "Amber",
+    "ru": "Янтарь"
+  },
+  "Amount ({{0}})": {
+    "en": "Amount ({{0}})",
+    "ru": "Количество ({{0}})"
+  },
+  "Appearance": {
+    "en": "Appearance",
+    "ru": "Внешний вид"
+  },
+  "Application": {
+    "en": "Application",
+    "ru": "Приложение"
+  },
+  "Assistant": {
+    "en": "Assistant",
+    "ru": "Ассистент"
+  },
+  "Assistant уточнит срок, этапы и привычки, затем покажет план перед сохранением. Цель не будет создана без подтверждения в чате.": {
+    "en": "Assistant will clarify the time frame, milestones, and habits, then show you the plan before saving. The goal will not be created without confirmation in chat.",
+    "ru": "Assistant уточнит срок, этапы и привычки, затем покажет план перед сохранением. Цель не будет создана без подтверждения в чате."
+  },
+  "Attend Lecture": {
+    "en": "Attend Lecture",
+    "ru": "Посещать лекции"
+  },
+  "Auto": {
+    "en": "Auto",
+    "ru": "Авто"
+  },
+  "Backup exported successfully.": {
+    "en": "Backup exported successfully.",
+    "ru": "Резервная копия успешно экспортирована."
+  },
+  "Backup restored successfully.": {
+    "en": "Backup restored successfully.",
+    "ru": "Резервная копия успешно восстановлена."
+  },
+  "CSV-экспорт и удаление всех данных пока недоступны.": {
+    "en": "CSV export and deletion of all data are not yet available.",
+    "ru": "CSV-экспорт и удаление всех данных пока недоступны."
+  },
+  "Calendar": {
+    "en": "Calendar",
+    "ru": "Календарь"
+  },
+  "Category": {
+    "en": "Category",
+    "ru": "Категория"
+  },
+  "Change Schedule...": {
+    "en": "Change Schedule...",
+    "ru": "Изменить график..."
+  },
+  "Checkbox": {
+    "en": "Checkbox",
+    "ru": "Флажок"
+  },
+  "Click + Add Habit to create your daily routine.": {
+    "en": "Click + Add Habit to create your daily routine.",
+    "ru": "Нажмите + Добавить привычку, чтобы создать свой распорядок дня."
+  },
+  "Close": {
+    "en": "Close",
+    "ru": "Закрыть"
+  },
+  "Complete": {
+    "en": "Complete",
+    "ru": "Выполнить"
+  },
+  "Complete daily university lecture & take structured notes": {
+    "en": "Complete daily university lecture & take structured notes",
+    "ru": "Проходите ежедневные университетские лекции и делайте структурированные заметки."
+  },
+  "Complete habits over multiple days to build consistency leaders.": {
+    "en": "Complete habits over multiple days to build consistency leaders.",
+    "ru": "Вырабатывайте привычки в течение нескольких дней, чтобы сформировать последовательных лидеров."
+  },
+  "Completed": {
+    "en": "Completed",
+    "ru": "Выполнено"
+  },
+  "Completed Habits": {
+    "en": "Completed Habits",
+    "ru": "Завершенные привычки"
+  },
+  "Completed morning run split and push-ups before 8 AM.": {
+    "en": "Completed morning run split and push-ups before 8 AM.",
+    "ru": "Завершить утреннюю пробежку и отжимания до 8 утра."
+  },
+  "Completion %": {
+    "en": "Completion %",
+    "ru": "% завершения"
+  },
+  "Completion Rate (30d)": {
+    "en": "Completion Rate (30d)",
+    "ru": "Выполнение за 30 дней"
+  },
+  "Continue Normal Target": {
+    "en": "Continue Normal Target",
+    "ru": "Продолжить нормальную цель"
+  },
+  "Cormorant Garamond": {
+    "en": "Cormorant Garamond",
+    "ru": "Cormorant Garamond"
+  },
+  "CormorantGaramond": {
+    "en": "CormorantGaramond",
+    "ru": "CormorantGaramond"
+  },
+  "CormorantGaramond-Italic": {
+    "en": "CormorantGaramond-Italic",
+    "ru": "CormorantGaramond-Italic"
+  },
+  "Counter": {
+    "en": "Counter",
+    "ru": "Счётчик"
+  },
+  "Counter habits only": {
+    "en": "Counter habits only",
+    "ru": "Только привычки со счётчиком"
+  },
+  "Current Streak": {
+    "en": "Current Streak",
+    "ru": "Текущая серия"
+  },
+  "Custom Unit": {
+    "en": "Custom Unit",
+    "ru": "Пользовательская единица"
+  },
+  "Custom Unit Name": {
+    "en": "Custom Unit Name",
+    "ru": "Название единицы измерения"
+  },
+  "Custom category": {
+    "en": "Custom category",
+    "ru": "Пользовательская категория"
+  },
+  "Daily Completion Trend ({{0}})": {
+    "en": "Daily Completion Trend ({{0}})",
+    "ru": "Тенденция ежедневного завершения ({{0}})"
+  },
+  "Daily Notes ({{0}})": {
+    "en": "Daily Notes ({{0}})",
+    "ru": "Ежедневные заметки ({{0}})"
+  },
+  "Daily Progress: {{0}}%": {
+    "en": "Daily Progress: {{0}}%",
+    "ru": "Ежедневный прогресс: {{0}}%"
+  },
+  "Daily Target": {
+    "en": "Daily Target",
+    "ru": "Ежедневная цель"
+  },
+  "Daily Target: {{0}} {{1}} (Quick-Add +{{2}})": {
+    "en": "Daily Target: {{0}} {{1}} (Quick-Add +{{2}})",
+    "ru": "Ежедневная цель: {{0}} {{1}} (быстрое добавление + {{2}})"
+  },
+  "Daily mindful reading with custom page unit": {
+    "en": "Daily mindful reading with custom page unit",
+    "ru": "Ежедневное внимательное чтение с настраиваемым блоком страниц"
+  },
+  "Daily target: {{0}} {{1}}. Stay consistent!": {
+    "en": "Daily target: {{0}} {{1}}. Stay consistent!",
+    "ru": "Дневная норма: {{0}} {{1}}. Продолжайте в том же духе!"
+  },
+  "Dark Mode": {
+    "en": "Dark Mode",
+    "ru": "Темный режим"
+  },
+  "Dashboard": {
+    "en": "Dashboard",
+    "ru": "Обзор"
+  },
+  "Date": {
+    "en": "Date",
+    "ru": "Дата"
+  },
+  "Day": {
+    "en": "Day",
+    "ru": "День"
+  },
+  "Day Completion: {{0}}% • {{1}} missed, {{2}} partial": {
+    "en": "Day Completion: {{0}}% • {{1}} missed, {{2}} partial",
+    "ru": "Завершение дня: {{0}}% • Пропущено: {{1}}, частично: {{2}}"
+  },
+  "Deep technical & non-fiction reading session": {
+    "en": "Deep technical & non-fiction reading session",
+    "ru": "Глубокое чтение технической и научно-популярной литературы"
+  },
+  "Default Habit Frequency": {
+    "en": "Default Habit Frequency",
+    "ru": "Частота привычек по умолчанию"
+  },
+  "Define your own custom unit name and numerical target.": {
+    "en": "Define your own custom unit name and numerical target.",
+    "ru": "Определите свое собственное имя единицы и числовую цель."
+  },
+  "Description (Optional)": {
+    "en": "Description (Optional)",
+    "ru": "Описание (необязательно)"
+  },
+  "Designed for focused daily consistency, instant quick-add tracking, effective-dated target history, and distraction-free conditional missed-day reviews.": {
+    "en": "Designed for focused daily consistency, instant quick-add tracking, effective-dated target history, and distraction-free conditional missed-day reviews.",
+    "ru": "Разработан для целенаправленной ежедневной согласованности, мгновенного отслеживания быстрых добавлений, истории целей с датой вступления в силу и условных обзоров пропущенных дней без отвлекающих факторов."
+  },
+  "Dismiss": {
+    "en": "Dismiss",
+    "ru": "Закрыть"
+  },
+  "Distance": {
+    "en": "Distance",
+    "ru": "Расстояние"
+  },
+  "Distance Unit": {
+    "en": "Distance Unit",
+    "ru": "Единица расстояния"
+  },
+  "Distance habits only": {
+    "en": "Distance habits only",
+    "ru": "Только дистанционные привычки"
+  },
+  "Drink Water": {
+    "en": "Drink Water",
+    "ru": "Пить воду"
+  },
+  "Duration": {
+    "en": "Duration",
+    "ru": "Продолжительность"
+  },
+  "Edit Habit": {
+    "en": "Edit Habit",
+    "ru": "Изменить привычку"
+  },
+  "Edit Habit...": {
+    "en": "Edit Habit...",
+    "ru": "Редактировать привычку..."
+  },
+  "Education": {
+    "en": "Education",
+    "ru": "Образование"
+  },
+  "Effective from {{0}}:": {
+    "en": "Effective from {{0}}:",
+    "ru": "Вступает в силу с {{0}}:"
+  },
+  "Effective target on {{0}}: {{1}}": {
+    "en": "Effective target on {{0}}: {{1}}",
+    "ru": "Эффективная цель на {{0}}: {{1}}"
+  },
+  "Effective-Dated Target History": {
+    "en": "Effective-Dated Target History",
+    "ru": "Целевая история с датой вступления в силу"
+  },
+  "Emerald": {
+    "en": "Emerald",
+    "ru": "Изумруд"
+  },
+  "Enable Daily Reminder Notification": {
+    "en": "Enable Daily Reminder Notification",
+    "ru": "Включить ежедневное напоминание"
+  },
+  "Enable Native macOS Habit Reminder Notifications": {
+    "en": "Enable Native macOS Habit Reminder Notifications",
+    "ru": "Включить встроенные уведомления о привычках macOS"
+  },
+  "English": {
+    "en": "English",
+    "ru": "Английский"
+  },
+  "Estimated Duration (mins, optional)": {
+    "en": "Estimated Duration (mins, optional)",
+    "ru": "Предполагаемая продолжительность (минуты, необязательно)"
+  },
+  "Evening": {
+    "en": "Evening",
+    "ru": "Вечер"
+  },
+  "Every Day": {
+    "en": "Every Day",
+    "ru": "Каждый день"
+  },
+  "Export Data / Create Backup...": {
+    "en": "Export Data / Create Backup...",
+    "ru": "Экспортировать данные/создать резервную копию..."
+  },
+  "F": {
+    "en": "F",
+    "ru": "Ф"
+  },
+  "Feeling energized and focused.": {
+    "en": "Feeling energized and focused.",
+    "ru": "Чувствую прилив энергии и сосредоточенность."
+  },
+  "Finish reading session right after dinner.": {
+    "en": "Finish reading session right after dinner.",
+    "ru": "Завершите сеанс чтения сразу после ужина."
+  },
+  "Fitness": {
+    "en": "Fitness",
+    "ru": "Фитнес"
+  },
+  "Frequency": {
+    "en": "Frequency",
+    "ru": "Частота"
+  },
+  "Fri": {
+    "en": "Fri",
+    "ru": "Пт"
+  },
+  "Fully Missed Only": {
+    "en": "Fully Missed Only",
+    "ru": "Только полностью пропущенный"
+  },
+  "Gemini не ответил. Проверьте подключение к интернету.": {
+    "en": "Gemini didn't respond. Check your internet connection.",
+    "ru": "Gemini не ответил. Проверьте подключение к интернету."
+  },
+  "Gemini не принял API-ключ или запрос.": {
+    "en": "Gemini did not accept the API key or request.",
+    "ru": "Gemini не принял API-ключ или запрос."
+  },
+  "Goals": {
+    "en": "Goals",
+    "ru": "Цели"
+  },
+  "Habit Identity": {
+    "en": "Habit Identity",
+    "ru": "Описание привычки"
+  },
+  "Habit Name": {
+    "en": "Habit Name",
+    "ru": "Название привычки"
+  },
+  "HabitFlow": {
+    "en": "HabitFlow",
+    "ru": "HabitFlow"
+  },
+  "HabitFlow Reminder: {{0}}": {
+    "en": "HabitFlow Reminder: {{0}}",
+    "ru": "Напоминание HabitFlow: {{0}}"
+  },
+  "HabitFlow for macOS": {
+    "en": "HabitFlow for macOS",
+    "ru": "HabitFlow для macOS"
+  },
+  "HabitFlow persistence load error: {{0}}": {
+    "en": "HabitFlow persistence load error: {{0}}",
+    "ru": "Ошибка загрузки персистентного хранилища HabitFlow: {{0}}"
+  },
+  "HabitFlow persistence save error: {{0}}": {
+    "en": "HabitFlow persistence save error: {{0}}",
+    "ru": "Ошибка сохранения персистентности HabitFlow: {{0}}"
+  },
+  "HabitFlow.Connectivity": {
+    "en": "HabitFlow.Connectivity",
+    "ru": "HabitFlow.Подключение"
+  },
+  "Habits": {
+    "en": "Habits",
+    "ru": "Привычки"
+  },
+  "Habits Needing Attention": {
+    "en": "Habits Needing Attention",
+    "ru": "Привычки, требующие внимания"
+  },
+  "Health": {
+    "en": "Health",
+    "ru": "Здоровье"
+  },
+  "Highlights or wins...": {
+    "en": "Highlights or wins...",
+    "ru": "Самые яркие моменты или победы..."
+  },
+  "Hour": {
+    "en": "Hour",
+    "ru": "Час"
+  },
+  "Hours": {
+    "en": "Hours",
+    "ru": "Часы"
+  },
+  "Hydration and lecture notes stayed on track.": {
+    "en": "Hydration and lecture notes stayed on track.",
+    "ru": "Гидратация и конспекты лекций остались на должном уровне."
+  },
+  "Icon or Emoji": {
+    "en": "Icon or Emoji",
+    "ru": "Значок или эмодзи"
+  },
+  "Import / Restore Backup...": {
+    "en": "Import / Restore Backup...",
+    "ru": "Импортировать/восстановить резервную копию..."
+  },
+  "In {{0}}": {
+    "en": "In {{0}}",
+    "ru": "В {{0}}"
+  },
+  "Indigo": {
+    "en": "Indigo",
+    "ru": "Индиго"
+  },
+  "Inter": {
+    "en": "Inter",
+    "ru": "Inter"
+  },
+  "InterfaceTranslations": {
+    "en": "InterfaceTranslations",
+    "ru": "Переводы интерфейса"
+  },
+  "KZ": {
+    "en": "KZ",
+    "ru": "КЗ"
+  },
+  "Kilometers (km)": {
+    "en": "Kilometers (km)",
+    "ru": "Километры (км)"
+  },
+  "Language changes apply immediately and are saved on this Mac.": {
+    "en": "Language changes apply immediately and are saved on this Mac.",
+    "ru": "Язык меняется сразу и сохраняется на этом Mac."
+  },
+  "Last 14 Days Performance": {
+    "en": "Last 14 Days Performance",
+    "ru": "Результаты за последние 14 дней"
+  },
+  "Light Mode": {
+    "en": "Light Mode",
+    "ru": "Светлый режим"
+  },
+  "Local Data & Backups": {
+    "en": "Local Data & Backups",
+    "ru": "Локальные данные и резервные копии"
+  },
+  "Log & Finish": {
+    "en": "Log & Finish",
+    "ru": "Записаться и закончить"
+  },
+  "Logged via built-in duration timer": {
+    "en": "Logged via built-in duration timer",
+    "ru": "Записывается через встроенный таймер продолжительности."
+  },
+  "Longest Streak": {
+    "en": "Longest Streak",
+    "ru": "Самая длинная серия"
+  },
+  "M": {
+    "en": "M",
+    "ru": "М"
+  },
+  "MMMM d": {
+    "en": "MMMM d",
+    "ru": "ММММ д"
+  },
+  "Manage Today's Entries...": {
+    "en": "Manage Today's Entries...",
+    "ru": "Управление сегодняшними записями..."
+  },
+  "Measurement Type & Targets": {
+    "en": "Measurement Type & Targets",
+    "ru": "Тип измерения и цели"
+  },
+  "Meters (m)": {
+    "en": "Meters (m)",
+    "ru": "Метры (м)"
+  },
+  "Minute": {
+    "en": "Minute",
+    "ru": "минута"
+  },
+  "Minutes": {
+    "en": "Minutes",
+    "ru": "Минуты"
+  },
+  "Missed &": {
+    "en": "Missed &",
+    "ru": "Пропущенный &"
+  },
+  "Missed & Unfinished": {
+    "en": "Missed & Unfinished",
+    "ru": "Пропущено и не завершено"
+  },
+  "Missed Days": {
+    "en": "Missed Days",
+    "ru": "Пропущенные дни"
+  },
+  "Mon": {
+    "en": "Mon",
+    "ru": "Пн"
+  },
+  "Monday": {
+    "en": "Monday",
+    "ru": "Понедельник"
+  },
+  "Morning": {
+    "en": "Morning",
+    "ru": "Утро"
+  },
+  "Most Consistent Habits": {
+    "en": "Most Consistent Habits",
+    "ru": "Самые устойчивые привычки"
+  },
+  "My": {
+    "en": "My",
+    "ru": "Мой"
+  },
+  "My Habits": {
+    "en": "My Habits",
+    "ru": "Мои привычки"
+  },
+  "No habits scheduled for today": {
+    "en": "No habits scheduled for today",
+    "ru": "На сегодня привычек не запланировано"
+  },
+  "No habits were scheduled on this date.": {
+    "en": "No habits were scheduled on this date.",
+    "ru": "Никаких привычек на этот день не было запланировано."
+  },
+  "No missed or partially completed scheduled habits in your history.": {
+    "en": "No missed or partially completed scheduled habits in your history.",
+    "ru": "В вашей истории нет пропущенных или частично выполненных запланированных привычек."
+  },
+  "No progress entries logged today yet.": {
+    "en": "No progress entries logged today yet.",
+    "ru": "Сегодня еще не зарегистрировано записей о прогрессе."
+  },
+  "No remaining goals scheduled for today.": {
+    "en": "No remaining goals scheduled for today.",
+    "ru": "На сегодня не запланировано ни одной цели."
+  },
+  "Not completed": {
+    "en": "Not completed",
+    "ru": "Не выполнено"
+  },
+  "Obstacles or distractions...": {
+    "en": "Obstacles or distractions...",
+    "ru": "Препятствия или отвлекающие факторы..."
+  },
+  "One concrete adjustment for tomorrow...": {
+    "en": "One concrete adjustment for tomorrow...",
+    "ru": "Одна конкретная корректировка на завтра..."
+  },
+  "Open Assistant": {
+    "en": "Open Assistant",
+    "ru": "Открыть помощник"
+  },
+  "Open Settings": {
+    "en": "Open Settings",
+    "ru": "Открыть настройки"
+  },
+  "Orange": {
+    "en": "Orange",
+    "ru": "Апельсин"
+  },
+  "Other": {
+    "en": "Other",
+    "ru": "Другой"
+  },
+  "Outdoor aerobic pace training": {
+    "en": "Outdoor aerobic pace training",
+    "ru": "Аэробная тренировка на открытом воздухе"
+  },
+  "POST": {
+    "en": "POST",
+    "ru": "ПОЧТА"
+  },
+  "Partially Completed Only": {
+    "en": "Partially Completed Only",
+    "ru": "Только частично завершено"
+  },
+  "Partially completed": {
+    "en": "Partially completed",
+    "ru": "Частично завершено"
+  },
+  "Pause": {
+    "en": "Pause",
+    "ru": "Пауза"
+  },
+  "Pause Habit": {
+    "en": "Pause Habit",
+    "ru": "Пауза Привычка"
+  },
+  "Personal Development": {
+    "en": "Personal Development",
+    "ru": "Личное развитие"
+  },
+  "Personal Habit Studio": {
+    "en": "Personal Habit Studio",
+    "ru": "Личная студия привычек"
+  },
+  "Please enter a habit name.": {
+    "en": "Please enter a habit name.",
+    "ru": "Введите название привычки."
+  },
+  "Please enter a valid positive daily target.": {
+    "en": "Please enter a valid positive daily target.",
+    "ru": "Введите допустимую положительную дневную цель."
+  },
+  "Please enter a valid positive quick-add increment.": {
+    "en": "Please enter a valid positive quick-add increment.",
+    "ru": "Введите допустимый положительный прирост для быстрого добавления."
+  },
+  "Preferences": {
+    "en": "Preferences",
+    "ru": "Предпочтения"
+  },
+  "Productivity": {
+    "en": "Productivity",
+    "ru": "Производительность"
+  },
+  "Push-ups": {
+    "en": "Push-ups",
+    "ru": "Отжимания"
+  },
+  "Quantity": {
+    "en": "Quantity",
+    "ru": "Количество"
+  },
+  "Quantity Unit": {
+    "en": "Quantity Unit",
+    "ru": "Единица измерения количества"
+  },
+  "Quick Add": {
+    "en": "Quick Add",
+    "ru": "Быстрое добавление"
+  },
+  "Quick Add First Unfinished Habit": {
+    "en": "Quick Add First Unfinished Habit",
+    "ru": "Быстрое добавление первой незавершенной привычки"
+  },
+  "Quick Goal Input": {
+    "en": "Quick Goal Input",
+    "ru": "Быстрый ввод цели"
+  },
+  "Quick add +{{0}} {{1}}": {
+    "en": "Quick add +{{0}} {{1}}",
+    "ru": "Быстрое добавление +{{0}} {{1}}"
+  },
+  "Quick-Add (+) Increment": {
+    "en": "Quick-Add (+) Increment",
+    "ru": "Быстрое добавление (+)"
+  },
+  "Quran Reflection": {
+    "en": "Quran Reflection",
+    "ru": "Коран Отражение"
+  },
+  "Rainy evening cut outdoor running short.": {
+    "en": "Rainy evening cut outdoor running short.",
+    "ru": "Дождливый вечер прервал работу на открытом воздухе."
+  },
+  "Reading": {
+    "en": "Reading",
+    "ru": "Чтение"
+  },
+  "Religion": {
+    "en": "Religion",
+    "ru": "Религия"
+  },
+  "Repetition Label": {
+    "en": "Repetition Label",
+    "ru": "Единица повторений"
+  },
+  "Resume": {
+    "en": "Resume",
+    "ru": "Продолжить"
+  },
+  "Resume Habit": {
+    "en": "Resume Habit",
+    "ru": "Возобновить привычку"
+  },
+  "Rose": {
+    "en": "Rose",
+    "ru": "Роза"
+  },
+  "Run in the morning instead of waiting until evening.": {
+    "en": "Run in the morning instead of waiting until evening.",
+    "ru": "Бегайте утром вместо того, чтобы ждать вечера."
+  },
+  "Running": {
+    "en": "Running",
+    "ru": "Бег"
+  },
+  "Russian": {
+    "en": "Russian",
+    "ru": "Русский"
+  },
+  "S": {
+    "en": "S",
+    "ru": "С"
+  },
+  "Sat": {
+    "en": "Sat",
+    "ru": "Сб"
+  },
+  "Save Changes": {
+    "en": "Save Changes",
+    "ru": "Сохранить изменения"
+  },
+  "Save Daily Note": {
+    "en": "Save Daily Note",
+    "ru": "Сохранить ежедневную заметку"
+  },
+  "Saved": {
+    "en": "Saved",
+    "ru": "Сохранено"
+  },
+  "Schedule & Reminders": {
+    "en": "Schedule & Reminders",
+    "ru": "Расписание и напоминания"
+  },
+  "Selected Weekdays": {
+    "en": "Selected Weekdays",
+    "ru": "Выбранные дни недели"
+  },
+  "Settings": {
+    "en": "Settings",
+    "ru": "Настройки"
+  },
+  "Show Decrease [ - ] Buttons on Dashboard Rows": {
+    "en": "Show Decrease [ - ] Buttons on Dashboard Rows",
+    "ru": "Показывать кнопки уменьшения [-] в строках информационной панели"
+  },
+  "Show Motivational Subtitle in Dashboard Header": {
+    "en": "Show Motivational Subtitle in Dashboard Header",
+    "ru": "Показывать мотивационные подзаголовки в заголовке информационной панели"
+  },
+  "Simple completed or not completed daily tracking.": {
+    "en": "Simple completed or not completed daily tracking.",
+    "ru": "Простое завершенное или незавершенное ежедневное отслеживание."
+  },
+  "Single-click daily completion button (no numerical target needed).": {
+    "en": "Single-click daily completion button (no numerical target needed).",
+    "ru": "Кнопка ежедневного завершения одним щелчком мыши (числовая цель не требуется)."
+  },
+  "Sky Blue": {
+    "en": "Sky Blue",
+    "ru": "Небесно-голубой"
+  },
+  "Smart Recovery Suggestion": {
+    "en": "Smart Recovery Suggestion",
+    "ru": "Умное предложение по восстановлению"
+  },
+  "Start or log built-in duration timer": {
+    "en": "Start or log built-in duration timer",
+    "ru": "Запустить таймер или записать время"
+  },
+  "Statistics": {
+    "en": "Statistics",
+    "ru": "Статистика"
+  },
+  "Stay hydrated throughout the workday": {
+    "en": "Stay hydrated throughout the workday",
+    "ru": "Пейте больше жидкости в течение рабочего дня"
+  },
+  "Streak: {{0}}d (Best {{1}}d) • {{2}}/{{3}} days": {
+    "en": "Streak: {{0}}d (Best {{1}}d) • {{2}}/{{3}} days",
+    "ru": "Серия: {{0}}д (лучший результат: {{1}}д) • {{2}}/{{3}} дн."
+  },
+  "Subtract {{0}} {{1}}": {
+    "en": "Subtract {{0}} {{1}}",
+    "ru": "Вычтите {{0}} {{1}}"
+  },
+  "Sun": {
+    "en": "Sun",
+    "ru": "Вс"
+  },
+  "Sunday": {
+    "en": "Sunday",
+    "ru": "Воскресенье"
+  },
+  "Switch to Dark Mode": {
+    "en": "Switch to Dark Mode",
+    "ru": "Переключиться в темный режим"
+  },
+  "Switch to Light Mode": {
+    "en": "Switch to Light Mode",
+    "ru": "Переключиться в светлый режим"
+  },
+  "System Appearance": {
+    "en": "System Appearance",
+    "ru": "Внешний вид системы"
+  },
+  "T": {
+    "en": "T",
+    "ru": "Т"
+  },
+  "Target changes are saved with today's effective date so historical completion percentages remain intact.": {
+    "en": "Target changes are saved with today's effective date so historical completion percentages remain intact.",
+    "ru": "Целевые изменения сохраняются с сегодняшней датой вступления в силу, поэтому исторические проценты выполнения остаются неизменными."
+  },
+  "Teal": {
+    "en": "Teal",
+    "ru": "Бирюзовый"
+  },
+  "Temporarily Reduce to {{0}} {{1}}": {
+    "en": "Temporarily Reduce to {{0}} {{1}}",
+    "ru": "Временно сократить до {{0}} {{1}}"
+  },
+  "Thu": {
+    "en": "Thu",
+    "ru": "Чт"
+  },
+  "Time Unit": {
+    "en": "Time Unit",
+    "ru": "Единица времени"
+  },
+  "Time to complete your daily goal: {{0}}.": {
+    "en": "Time to complete your daily goal: {{0}}.",
+    "ru": "Пришло время выполнить ежедневную цель: {{0}}."
+  },
+  "Timer": {
+    "en": "Timer",
+    "ru": "Таймер"
+  },
+  "Timer Session ({{0}})": {
+    "en": "Timer Session ({{0}})",
+    "ru": "Сеанс таймера ({{0}})"
+  },
+  "Today — {{0}}": {
+    "en": "Today — {{0}}",
+    "ru": "Сегодня — {{0}}"
+  },
+  "Today's": {
+    "en": "Today's",
+    "ru": "На сегодня"
+  },
+  "Today's Goals": {
+    "en": "Today's Goals",
+    "ru": "Цели на сегодня"
+  },
+  "Today's Habits": {
+    "en": "Today's Habits",
+    "ru": "Сегодняшние привычки"
+  },
+  "Today's Remaining Goals": {
+    "en": "Today's Remaining Goals",
+    "ru": "Оставшиеся цели на сегодня"
+  },
+  "Total Distance": {
+    "en": "Total Distance",
+    "ru": "Общее расстояние"
+  },
+  "Total Logged (30d)": {
+    "en": "Total Logged (30d)",
+    "ru": "Всего зарегистрировано (30 дней)"
+  },
+  "Total Repetitions": {
+    "en": "Total Repetitions",
+    "ru": "Всего повторений"
+  },
+  "Total Tracked Time": {
+    "en": "Total Tracked Time",
+    "ru": "Общее время отслеживания"
+  },
+  "Total: {{0}}": {
+    "en": "Total: {{0}}",
+    "ru": "Итого: {{0}}"
+  },
+  "Track a specific amount with custom quantity units (glasses, pages, servings).": {
+    "en": "Track a specific amount with custom quantity units (glasses, pages, servings).",
+    "ru": "Отслеживайте определенную сумму с помощью пользовательских единиц количества (стаканы, страницы, порции)."
+  },
+  "Track physical distance (kilometers or meters) with decimal precision.": {
+    "en": "Track physical distance (kilometers or meters) with decimal precision.",
+    "ru": "Отслеживайте физическое расстояние (километры или метры) с десятичной точностью."
+  },
+  "Track repetitions or occurrences (push-ups, words, exercises).": {
+    "en": "Track repetitions or occurrences (push-ups, words, exercises).",
+    "ru": "Отслеживайте повторы или случаи (отжимания, слова, упражнения)."
+  },
+  "Track time spent on an activity (minutes or hours) with manual entry or built-in timer.": {
+    "en": "Track time spent on an activity (minutes or hours) with manual entry or built-in timer.",
+    "ru": "Отслеживайте время, потраченное на занятие (минуты или часы), с помощью ручного ввода или встроенного таймера."
+  },
+  "Tue": {
+    "en": "Tue",
+    "ru": "Вт"
+  },
+  "Unfinished": {
+    "en": "Unfinished",
+    "ru": "Незаконченный"
+  },
+  "Upper body strength sets": {
+    "en": "Upper body strength sets",
+    "ru": "Силовые комплексы для верхней части тела"
+  },
+  "Use": {
+    "en": "Use",
+    "ru": "Использовать"
+  },
+  "Use System Appearance": {
+    "en": "Use System Appearance",
+    "ru": "Использовать внешний вид системы"
+  },
+  "Version 1.0.0 (Native Swift & SwiftUI)": {
+    "en": "Version 1.0.0 (Native Swift & SwiftUI)",
+    "ru": "Версия 1.0.0 (родной Swift и SwiftUI)"
+  },
+  "View All History": {
+    "en": "View All History",
+    "ru": "Просмотреть всю историю"
+  },
+  "View or add multiple daily entries": {
+    "en": "View or add multiple daily entries",
+    "ru": "Просмотр или добавление нескольких ежедневных записей"
+  },
+  "Violet": {
+    "en": "Violet",
+    "ru": "Фиолетовый"
+  },
+  "W": {
+    "en": "W",
+    "ru": "Вт"
+  },
+  "Wed": {
+    "en": "Wed",
+    "ru": "Ср"
+  },
+  "Week Starting Day": {
+    "en": "Week Starting Day",
+    "ru": "День начала недели"
+  },
+  "Weekdays (Mon–Fri)": {
+    "en": "Weekdays (Mon–Fri)",
+    "ru": "Будние дни (пн–пт)"
+  },
+  "Weekends (Sat–Sun)": {
+    "en": "Weekends (Sat–Sun)",
+    "ru": "Выходные (Сб–Вс)"
+  },
+  "Weekly Target (Optional)": {
+    "en": "Weekly Target (Optional)",
+    "ru": "Еженедельная цель (необязательно)"
+  },
+  "Weekly Target (sessions, optional)": {
+    "en": "Weekly Target (sessions, optional)",
+    "ru": "Еженедельная цель (сессии, необязательно)"
+  },
+  "What was difficult?": {
+    "en": "What was difficult?",
+    "ru": "Что было трудным?"
+  },
+  "What went well today?": {
+    "en": "What went well today?",
+    "ru": "Что сегодня прошло хорошо?"
+  },
+  "What would I improve tomorrow?": {
+    "en": "What would I improve tomorrow?",
+    "ru": "Что бы я улучшил завтра?"
+  },
+  "Why does this habit matter to you?": {
+    "en": "Why does this habit matter to you?",
+    "ru": "Почему эта привычка важна для вас?"
+  },
+  "Yesterday — {{0}}": {
+    "en": "Yesterday — {{0}}",
+    "ru": "Вчера — {{0}}"
+  },
+  "You missed your {{0}} habit for {{1}} days. Would you like to continue with your normal target or adjust it?": {
+    "en": "You missed your {{0}} habit for {{1}} days. Would you like to continue with your normal target or adjust it?",
+    "ru": "Вы пропускали привычку {{0}} в течение {{1}} дней. Хотите ли вы продолжить использовать свою обычную цель или скорректировать ее?"
+  },
+  "You're all caught up!": {
+    "en": "You're all caught up!",
+    "ru": "Всё выполнено!"
+  },
+  "e.g., 30": {
+    "en": "e.g., 30",
+    "ru": "например, 30"
+  },
+  "e.g., 5": {
+    "en": "e.g., 5",
+    "ru": "например, 5"
+  },
+  "e.g., Read a book, Run 5 km, Drink Water": {
+    "en": "e.g., Read a book, Run 5 km, Drink Water",
+    "ru": "например, прочитать книгу, пробежать 5 км, выпить воду."
+  },
+  "glasses, pages, servings": {
+    "en": "glasses, pages, servings",
+    "ru": "стаканы, страницы, порции"
+  },
+  "i am in ": {
+    "en": "i am in ",
+    "ru": "я в"
+  },
+  "i live in ": {
+    "en": "i live in ",
+    "ru": "я живу в"
+  },
+  "pages, sessions, assignments": {
+    "en": "pages, sessions, assignments",
+    "ru": "страницы, сеансы, задания"
+  },
+  "reps, words, exercises": {
+    "en": "reps, words, exercises",
+    "ru": "повторения, слова, упражнения"
+  },
+  "{{0}} completed • {{1}} partial • {{2}} missed ({{3}}%)": {
+    "en": "{{0}} completed • {{1}} partial • {{2}} missed ({{3}}%)",
+    "ru": "{{0}} выполнено • {{1}} частично • {{2}} пропущено ({{3}}%)"
+  },
+  "{{0}} days": {
+    "en": "{{0}} days",
+    "ru": "{{0}} дней"
+  },
+  "{{0}} entries": {
+    "en": "{{0}} entries",
+    "ru": "{{0}} записей"
+  },
+  "{{0}} km": {
+    "en": "{{0}} km",
+    "ru": "{{0}} км"
+  },
+  "{{0}} min": {
+    "en": "{{0}} min",
+    "ru": "{{0}} мин."
+  },
+  "{{0}} of {{1}}": {
+    "en": "{{0}} of {{1}}",
+    "ru": "{{0}} из {{1}}"
+  },
+  "{{0}} of {{1}} habits completed": {
+    "en": "{{0}} of {{1}} habits completed",
+    "ru": "Выполнено {{0}} из {{1}} привычек"
+  },
+  "{{0}} previous missed days • {{1}} unfinished habits": {
+    "en": "{{0}} previous missed days • {{1}} unfinished habits",
+    "ru": "{{0}} предыдущие пропущенные дни • {{1}} незавершенные привычки"
+  },
+  "{{0}} remaining": {
+    "en": "{{0}} remaining",
+    "ru": "осталось {{0}}"
+  },
+  "{{0}} reps": {
+    "en": "{{0}} reps",
+    "ru": "{{0}} повторов"
+  },
+  "{{0}} scheduled": {
+    "en": "{{0}} scheduled",
+    "ru": "{{0}} запланировано"
+  },
+  "{{0}} scheduled habits remaining for today.": {
+    "en": "{{0}} scheduled habits remaining for today.",
+    "ru": "На сегодня осталось {{0}} запланированных привычек."
+  },
+  "{{0}} unfinished • {{1}}% day completion": {
+    "en": "{{0}} unfinished • {{1}}% day completion",
+    "ru": "{{0}} незавершено • Выполнено {{1}} % за день"
+  },
+  "{{0}} {{1}} left": {
+    "en": "{{0}} {{1}} left",
+    "ru": "{{0}} {{1}} осталось"
+  },
+  "{{0}} {{1}} of {{2}}": {
+    "en": "{{0}} {{1}} of {{2}}",
+    "ru": "{{0}} {{1}} из {{2}}"
+  },
+  "{{0}} {{1}} · до {{2}}": {
+    "en": "{{0}} {{1}} · due {{2}}",
+    "ru": "{{0}} {{1}} · до {{2}}"
+  },
+  "{{0}} · {{1}} {{2}} до {{3}}": {
+    "en": "{{0}} · {{1}} {{2}} by {{3}}",
+    "ru": "{{0}} · {{1}} {{2}} до {{3}}"
+  },
+  "{{0}} · {{1}} · минимум: {{2}}": {
+    "en": "{{0}} · {{1}} · minimum: {{2}}",
+    "ru": "{{0}} · {{1}} · минимум: {{2}}"
+  },
+  "{{0}} дн.": {
+    "en": "{{0}} days",
+    "ru": "{{0}} дн."
+  },
+  "{{0}} дней": {
+    "en": "{{0}} days",
+    "ru": "{{0}} дней"
+  },
+  "{{0}} из {{1}}": {
+    "en": "{{0}} of {{1}}",
+    "ru": "{{0}} из {{1}}"
+  },
+  "{{0}} из {{1}} выполнено": {
+    "en": "{{0}} of {{1}} completed",
+    "ru": "{{0}} из {{1}} выполнено"
+  },
+  "{{0}} пунктов": {
+    "en": "{{0}} items",
+    "ru": "{{0}} пунктов"
+  },
+  "{{0}} этапов · {{1}} привычек": {
+    "en": "{{0}} milestones · {{1}} habits",
+    "ru": "{{0}} этапов · {{1}} привычек"
+  },
+  "{{0}} — Detailed Analytics": {
+    "en": "{{0}} — Detailed Analytics",
+    "ru": "{{0}} — Подробная аналитика"
+  },
+  "{{0}} — Not completed": {
+    "en": "{{0}} — Not completed",
+    "ru": "{{0}} — не завершено"
+  },
+  "{{0}} — Today's Entries": {
+    "en": "{{0}} — Today's Entries",
+    "ru": "{{0}} – сегодняшние записи"
+  },
+  "{{0}}, цель {{1}} {{2}}, срок {{3}}": {
+    "en": "{{0}}, goal {{1}} {{2}}, deadline {{3}}",
+    "ru": "{{0}}, цель {{1}} {{2}}, срок {{3}}"
+  },
+  "{{0}}: {{1}} из {{2}} выполнено": {
+    "en": "{{0}}: {{1}} of {{2}} completed",
+    "ru": "{{0}}: {{1}} из {{2}} выполнено"
+  },
+  "{{0}}: {{1}}% ({{2}}/{{3}} habits)": {
+    "en": "{{0}}: {{1}}% ({{2}}/{{3}} habits)",
+    "ru": "{{0}}: {{1}} % ({{2}}/{{3}} привычки)"
+  },
+  "{{0}}: {{1}}, цель {{2}} {{3}}, выполнено {{4}}/{{5}} дней за 14 дней": {
+    "en": "{{0}}: {{1}}, goal {{2}} {{3}}, completed {{4}}/{{5}} days in 14 days",
+    "ru": "{{0}}: {{1}}, цель {{2}} {{3}}, выполнено {{4}}/{{5}} дней за 14 дней"
+  },
+  "~{{0}} min left": {
+    "en": "~{{0}} min left",
+    "ru": "Осталось ~{{0}} мин."
+  },
+  "«{{0}}»: архив сохраняет историю; удаление навсегда стирает и её.": {
+    "en": "\"{{0}}\": archive saves history; deleting it permanently erases it too.",
+    "ru": "«{{0}}»: архив сохраняет историю; удаление навсегда стирает и её."
+  },
+  "Аккаунт": {
+    "en": "Account",
+    "ru": "Аккаунт"
+  },
+  "Активность": {
+    "en": "Activity",
+    "ru": "Активность"
+  },
+  "Активность за год": {
+    "en": "Activity for the year",
+    "ru": "Активность за год"
+  },
+  "Активные": {
+    "en": "Active",
+    "ru": "Активные"
+  },
+  "Архивировать": {
+    "en": "Archive",
+    "ru": "Архивировать"
+  },
+  "Архивировать…": {
+    "en": "Archive…",
+    "ru": "Архивировать…"
+  },
+  "Ассистент печатает…": {
+    "en": "The assistant is typing...",
+    "ru": "Ассистент печатает…"
+  },
+  "Бейдж получен": {
+    "en": "Badge received",
+    "ru": "Бейдж получен"
+  },
+  "Больше": {
+    "en": "More",
+    "ru": "Больше"
+  },
+  "Быстро добавить цель или привычку…": {
+    "en": "Quickly add a goal or habit...",
+    "ru": "Быстро добавить цель или привычку…"
+  },
+  "Вид": {
+    "en": "View",
+    "ru": "Вид"
+  },
+  "Внешний вид": {
+    "en": "Appearance",
+    "ru": "Внешний вид"
+  },
+  "Возобновить": {
+    "en": "Resume",
+    "ru": "Возобновить"
+  },
+  "Вот что я понял": {
+    "en": "Here's what I understood",
+    "ru": "Вот что я понял"
+  },
+  "Все": {
+    "en": "All",
+    "ru": "Все"
+  },
+  "Все запланированные нормы выполнены": {
+    "en": "All scheduled targets completed",
+    "ru": "Все запланированные нормы выполнены"
+  },
+  "Все категории": {
+    "en": "All categories",
+    "ru": "Все категории"
+  },
+  "Все пропуски": {
+    "en": "All missed",
+    "ru": "Все пропуски"
+  },
+  "Всё время": {
+    "en": "All time",
+    "ru": "Всё время"
+  },
+  "Всё на сегодня готово": {
+    "en": "All done for today",
+    "ru": "Всё на сегодня готово"
+  },
+  "Вы выполнили все запланированные нормы.": {
+    "en": "You have completed all scheduled targets.",
+    "ru": "Вы выполнили все запланированные нормы."
+  },
+  "Выберите первую привычку": {
+    "en": "Choose your first habit",
+    "ru": "Выберите первую привычку"
+  },
+  "Выбрать, что сохранить": {
+    "en": "Choose what to save",
+    "ru": "Выбрать, что сохранить"
+  },
+  "Выполнение, регулярность и серии": {
+    "en": "Completion, consistency and streaks",
+    "ru": "Выполнение, регулярность и серии"
+  },
+  "Выполнено": {
+    "en": "Done",
+    "ru": "Выполнено"
+  },
+  "Выполнено {{0}} норм. Среднее выполнение — {{1}}%.": {
+    "en": "Completed {{0}} targets. Average completion: {{1}}%.",
+    "ru": "Выполнено {{0}} норм. Среднее выполнение — {{1}}%."
+  },
+  "Выполнено норм": {
+    "en": "Targets completed",
+    "ru": "Выполнено норм"
+  },
+  "Год": {
+    "en": "Year",
+    "ru": "Год"
+  },
+  "Готовлю ответ…": {
+    "en": "I'm preparing an answer...",
+    "ru": "Готовлю ответ…"
+  },
+  "Данные и резервные копии": {
+    "en": "Data and Backups",
+    "ru": "Данные и резервные копии"
+  },
+  "Данные хранятся на этом Mac. Учётная запись и синхронизация пока недоступны.": {
+    "en": "The data is stored on this Mac. Account and synchronization are not yet available.",
+    "ru": "Данные хранятся на этом Mac. Учётная запись и синхронизация пока недоступны."
+  },
+  "Для разбора текста и плана откройте Assistant": {
+    "en": "To parse text and plan, open Assistant",
+    "ru": "Для разбора текста и плана откройте Assistant"
+  },
+  "До {{0}}": {
+    "en": "Due {{0}}",
+    "ru": "До {{0}}"
+  },
+  "До {{0}} · {{1}} этапов": {
+    "en": "Due {{0}} · {{1}} milestones",
+    "ru": "До {{0}} · {{1}} этапов"
+  },
+  "До следующего бейджа: {{0}} дн.": {
+    "en": "Until next badge: {{0}} days.",
+    "ru": "До следующего бейджа: {{0}} дн."
+  },
+  "Добавить": {
+    "en": "Add",
+    "ru": "Добавить"
+  },
+  "Добавить привычку": {
+    "en": "Add a habit",
+    "ru": "Добавить привычку"
+  },
+  "Добавьте привычку, чтобы начать.": {
+    "en": "Add a habit to get started.",
+    "ru": "Добавьте привычку, чтобы начать."
+  },
+  "Добрый": {
+    "en": "Good",
+    "ru": "Добрый"
+  },
+  "Единый акцент приложения — тёплый оранжевый.": {
+    "en": "The single accent of the application is warm orange.",
+    "ru": "Единый акцент приложения — тёплый оранжевый."
+  },
+  "За 30 дней: {{0}} из {{1}} выполнено": {
+    "en": "In 30 days: {{0}} out of {{1}} completed",
+    "ru": "За 30 дней: {{0}} из {{1}} выполнено"
+  },
+  "За месяц": {
+    "en": "This month",
+    "ru": "За месяц"
+  },
+  "Задайте норму и расписание для новой привычки": {
+    "en": "Set a target and schedule for your new habit",
+    "ru": "Задайте норму и расписание для новой привычки"
+  },
+  "Закрыто целей": {
+    "en": "Goals completed",
+    "ru": "Закрыто целей"
+  },
+  "Закрыть подробности": {
+    "en": "Close details",
+    "ru": "Закрыть подробности"
+  },
+  "Заморозка серии пока не поддерживается моделью данных": {
+    "en": "Streak freezing is not available yet",
+    "ru": "Заморозка серии пока не поддерживается моделью данных"
+  },
+  "Запись задним числом": {
+    "en": "Log a past day",
+    "ru": "Запись задним числом"
+  },
+  "Здесь появится краткая сводка после обсуждения цели.": {
+    "en": "A summary will appear here after discussing the goal.",
+    "ru": "Здесь появится краткая сводка после обсуждения цели."
+  },
+  "Здесь появятся цели после добавления учёта их прогресса.": {
+    "en": "Goals will appear here after adding progress tracking.",
+    "ru": "Здесь появятся цели после добавления учёта их прогресса."
+  },
+  "Идеи": {
+    "en": "Ideas",
+    "ru": "Идеи"
+  },
+  "Измени план: ": {
+    "en": "Change the plan: ",
+    "ru": "Измени план: "
+  },
+  "Изменить": {
+    "en": "Change",
+    "ru": "Изменить"
+  },
+  "Изменить план": {
+    "en": "Change plan",
+    "ru": "Изменить план"
+  },
+  "Используй уже найденные ссылки в текущем плане, если они ещё подходят.": {
+    "en": "Use links already found in the current plan, if they are still suitable.",
+    "ru": "Используй уже найденные ссылки в текущем плане, если они ещё подходят."
+  },
+  "История": {
+    "en": "History",
+    "ru": "История"
+  },
+  "История выполнения целей пока не отслеживается": {
+    "en": "The history of goal completion is not yet tracked",
+    "ru": "История выполнения целей пока не отслеживается"
+  },
+  "История привычек, целей и заметок по дням": {
+    "en": "History of habits, goals and notes by day",
+    "ru": "История привычек, целей и заметок по дням"
+  },
+  "История пропущенных и незавершённых норм": {
+    "en": "History of missed and unfinished targets",
+    "ru": "История пропущенных и незавершённых норм"
+  },
+  "Итог периода": {
+    "en": "Period result",
+    "ru": "Итог периода"
+  },
+  "Как в системе": {
+    "en": "System",
+    "ru": "Как в системе"
+  },
+  "Карточки": {
+    "en": "Cards",
+    "ru": "Карточки"
+  },
+  "Категория": {
+    "en": "Category",
+    "ru": "Категория"
+  },
+  "Локальный профиль": {
+    "en": "Local profile",
+    "ru": "Локальный профиль"
+  },
+  "Лучшая серия": {
+    "en": "Best streak",
+    "ru": "Лучшая серия"
+  },
+  "Меньше": {
+    "en": "Less",
+    "ru": "Меньше"
+  },
+  "Месяц": {
+    "en": "Month",
+    "ru": "Месяц"
+  },
+  "Минимум на сложный день: {{0}}": {
+    "en": "Minimum for a difficult day: {{0}}",
+    "ru": "Минимум на сложный день: {{0}}"
+  },
+  "Модель Gemini 3.8 Flash недоступна для этого ключа.": {
+    "en": "Gemini 3.8 Flash model is not available for this key.",
+    "ru": "Модель Gemini 3.8 Flash недоступна для этого ключа."
+  },
+  "Мои цели": {
+    "en": "My goals",
+    "ru": "Мои цели"
+  },
+  "На паузе": {
+    "en": "Paused",
+    "ru": "На паузе"
+  },
+  "На сегодня пока ничего не запланировано": {
+    "en": "There is nothing planned for today yet",
+    "ru": "На сегодня пока ничего не запланировано"
+  },
+  "Напишите желание или уточнение…": {
+    "en": "Write a wish or clarification...",
+    "ru": "Напишите желание или уточнение…"
+  },
+  "Напишите желание обычными словами. Ассистент уточнит детали и предложит план. Сохранение произойдёт только после нажатия кнопки.": {
+    "en": "Write your wish in ordinary words. The assistant will clarify the details and propose a plan. Saving will occur only after pressing the button.",
+    "ru": "Напишите желание обычными словами. Ассистент уточнит детали и предложит план. Сохранение произойдёт только после нажатия кнопки."
+  },
+  "Например: хочу читать по 20 страниц каждый день": {
+    "en": "For example: I want to read 20 pages every day",
+    "ru": "Например: хочу читать по 20 страниц каждый день"
+  },
+  "Не найден системный промпт ассистента.": {
+    "en": "The assistant system prompt was not found.",
+    "ru": "Не найден системный промпт ассистента."
+  },
+  "Не начато": {
+    "en": "Not started",
+    "ru": "Не начато"
+  },
+  "Не удалось прочитать план. Попробуйте уточнить запрос.": {
+    "en": "Failed to read the plan. Try to clarify your request.",
+    "ru": "Не удалось прочитать план. Попробуйте уточнить запрос."
+  },
+  "Неделя": {
+    "en": "Week",
+    "ru": "Неделя"
+  },
+  "Нет запроса для поиска.": {
+    "en": "There is no search query.",
+    "ru": "Нет запроса для поиска."
+  },
+  "Нет подключения к интернету. Данные привычек доступны локально.": {
+    "en": "No internet connection. Habit data is available locally.",
+    "ru": "Нет подключения к интернету. Данные привычек доступны локально."
+  },
+  "Новый чат": {
+    "en": "New chat",
+    "ru": "Новый чат"
+  },
+  "Норма выполнена": {
+    "en": "Target completed",
+    "ru": "Норма выполнена"
+  },
+  "Нормы на неделю": {
+    "en": "Weekly targets",
+    "ru": "Нормы на неделю"
+  },
+  "О приложении": {
+    "en": "About",
+    "ru": "О приложении"
+  },
+  "Обсудить с Assistant": {
+    "en": "Discuss with Assistant",
+    "ru": "Обсудить с Assistant"
+  },
+  "Обсудить цель": {
+    "en": "Discuss goal",
+    "ru": "Обсудить цель"
+  },
+  "Опишите обычными словами": {
+    "en": "Describe in ordinary words",
+    "ru": "Опишите обычными словами"
+  },
+  "Осталось {{0}} дней": {
+    "en": "{{0}} days left",
+    "ru": "Осталось {{0}} дней"
+  },
+  "Осталось сделать": {
+    "en": "Still to do",
+    "ru": "Осталось сделать"
+  },
+  "Отмена": {
+    "en": "Cancel",
+    "ru": "Отмена"
+  },
+  "Отменить": {
+    "en": "Cancel",
+    "ru": "Отменить"
+  },
+  "Отметить выполнение": {
+    "en": "Mark completed",
+    "ru": "Отметить выполнение"
+  },
+  "Отметить задним числом": {
+    "en": "Log completion",
+    "ru": "Отметить задним числом"
+  },
+  "Отметить норму": {
+    "en": "Complete target",
+    "ru": "Отметить норму"
+  },
+  "Отметить сегодня": {
+    "en": "Complete today",
+    "ru": "Отметить сегодня"
+  },
+  "Период": {
+    "en": "Period",
+    "ru": "Период"
+  },
+  "План": {
+    "en": "Plan",
+    "ru": "План"
+  },
+  "План сохранён": {
+    "en": "Plan saved",
+    "ru": "План сохранён"
+  },
+  "Планируйте цели и привычки вместе с ИИ": {
+    "en": "Plan goals and habits with AI",
+    "ru": "Планируйте цели и привычки вместе с ИИ"
+  },
+  "По дням недели": {
+    "en": "By day of the week",
+    "ru": "По дням недели"
+  },
+  "По категориям": {
+    "en": "By category",
+    "ru": "По категориям"
+  },
+  "По фильтру ничего не найдено": {
+    "en": "No results found by filter",
+    "ru": "По фильтру ничего не найдено"
+  },
+  "Повторить": {
+    "en": "Retry",
+    "ru": "Повторить"
+  },
+  "Повторное вечернее напоминание и утренняя сводка пока недоступны.": {
+    "en": "The repeated evening reminder and morning summary are not yet available.",
+    "ru": "Повторное вечернее напоминание и утренняя сводка пока недоступны."
+  },
+  "Под угрозой": {
+    "en": "At risk",
+    "ru": "Под угрозой"
+  },
+  "Подробная статистика": {
+    "en": "Detailed statistics",
+    "ru": "Подробная статистика"
+  },
+  "Поиск недоступен и проверенных ссылок для этой темы нет; не добавляй непроверенные адреса.": {
+    "en": "Search is not available and there are no verified links for this topic; do not add unverified addresses.",
+    "ru": "Поиск недоступен и проверенных ссылок для этой темы нет; не добавляй непроверенные адреса."
+  },
+  "Поиск привычки": {
+    "en": "Habit Search",
+    "ru": "Поиск привычки"
+  },
+  "Пока нет запланированных привычек": {
+    "en": "No planned habits yet",
+    "ru": "Пока нет запланированных привычек"
+  },
+  "Пока нет привычек": {
+    "en": "No habits yet",
+    "ru": "Пока нет привычек"
+  },
+  "Показать подробности": {
+    "en": "Show details",
+    "ru": "Показать подробности"
+  },
+  "Поля ниже заполняются вручную. Автоматический разбор доступен в Assistant.": {
+    "en": "The fields below must be filled in manually. Automatic parsing is available in Assistant.",
+    "ru": "Поля ниже заполняются вручную. Автоматический разбор доступен в Assistant."
+  },
+  "Поставить на паузу": {
+    "en": "Pause",
+    "ru": "Поставить на паузу"
+  },
+  "Постановка цели": {
+    "en": "Setting goals",
+    "ru": "Постановка цели"
+  },
+  "Превышен лимит запросов Gemini. Попробуйте позже.": {
+    "en": "Gemini request limit exceeded. Please try again later.",
+    "ru": "Превышен лимит запросов Gemini. Попробуйте позже."
+  },
+  "Предыдущий ответ не прошёл проверку JSON или полей. Верни корректный JSON строго по схеме, проверь сроки, частоты и количество этапов/идей.": {
+    "en": "The previous response did not pass JSON or field validation. Return the correct JSON strictly according to the scheme, check the timing, frequency and number of stages/ideas.",
+    "ru": "Предыдущий ответ не прошёл проверку JSON или полей. Верни корректный JSON строго по схеме, проверь сроки, частоты и количество этапов/идей."
+  },
+  "Привычка": {
+    "en": "Habit",
+    "ru": "Привычка"
+  },
+  "Привычка сохранена": {
+    "en": "Habit saved",
+    "ru": "Привычка сохранена"
+  },
+  "Привычки": {
+    "en": "Habits",
+    "ru": "Привычки"
+  },
+  "Привычки сегодня": {
+    "en": "Habits today",
+    "ru": "Привычки сегодня"
+  },
+  "Приоритет: {{0}} · {{1}}": {
+    "en": "Priority: {{0}} · {{1}}",
+    "ru": "Приоритет: {{0}} · {{1}}"
+  },
+  "Прогресс цели пока не отслеживается": {
+    "en": "Goal progress is not yet tracked",
+    "ru": "Прогресс цели пока не отслеживается"
+  },
+  "Пропускаю занятия — помоги облегчить план": {
+    "en": "I'm missing classes - help me make my plan easier",
+    "ru": "Пропускаю занятия — помоги облегчить план"
+  },
+  "Реалистичность: {{0}}": {
+    "en": "Reality check: {{0}}",
+    "ru": "Реалистичность: {{0}}"
+  },
+  "Режим календаря": {
+    "en": "Calendar mode",
+    "ru": "Режим календаря"
+  },
+  "Русский": {
+    "en": "Russian",
+    "ru": "Русский"
+  },
+  "С чего начнём?": {
+    "en": "Where do we start?",
+    "ru": "С чего начнём?"
+  },
+  "СЕГОДНЯ": {
+    "en": "TODAY",
+    "ru": "СЕГОДНЯ"
+  },
+  "Светлая": {
+    "en": "Light",
+    "ru": "Светлая"
+  },
+  "Сделай полегче": {
+    "en": "Make it lighter",
+    "ru": "Сделай полегче"
+  },
+  "Сегодня": {
+    "en": "Today",
+    "ru": "Сегодня"
+  },
+  "Сегодня выберите первый небольшой шаг к цели.": {
+    "en": "Today, take the first small step towards your goal.",
+    "ru": "Сегодня выберите первый небольшой шаг к цели."
+  },
+  "Сегодня начните с «{{0}}» для привычки «{{1}}».": {
+    "en": "Today, start with \"{{0}}\" for the \"{{1}}\" habit.",
+    "ru": "Сегодня начните с «{{0}}» для привычки «{{1}}»."
+  },
+  "Серия из 100 дней получена": {
+    "en": "100-day streak achieved",
+    "ru": "Серия из 100 дней получена"
+  },
+  "Серия: {{0}} дней": {
+    "en": "Streak: {{0}} days",
+    "ru": "Серия: {{0}} дней"
+  },
+  "Скрыть выбор": {
+    "en": "Hide selection",
+    "ru": "Скрыть выбор"
+  },
+  "Сменить тему": {
+    "en": "Switch theme",
+    "ru": "Сменить тему"
+  },
+  "Состояние": {
+    "en": "State",
+    "ru": "Состояние"
+  },
+  "Сохранение доступно под карточкой в чате": {
+    "en": "Saving is available under the card in chat",
+    "ru": "Сохранение доступно под карточкой в чате"
+  },
+  "Сохранено. {{0}}": {
+    "en": "Saved. {{0}}",
+    "ru": "Сохранено. {{0}}"
+  },
+  "Сохранить всё": {
+    "en": "Save all",
+    "ru": "Сохранить всё"
+  },
+  "Сохранить выбранное": {
+    "en": "Save selection",
+    "ru": "Сохранить выбранное"
+  },
+  "Сохранить привычку": {
+    "en": "Save habit",
+    "ru": "Сохранить привычку"
+  },
+  "Список": {
+    "en": "List",
+    "ru": "Список"
+  },
+  "Средний процент": {
+    "en": "Average completion",
+    "ru": "Средний процент"
+  },
+  "Статус": {
+    "en": "Status",
+    "ru": "Статус"
+  },
+  "Тип": {
+    "en": "Type",
+    "ru": "Тип"
+  },
+  "Только привычки": {
+    "en": "Only habits",
+    "ru": "Только привычки"
+  },
+  "Только цели": {
+    "en": "Goals only",
+    "ru": "Только цели"
+  },
+  "Тёмная": {
+    "en": "Dark",
+    "ru": "Тёмная"
+  },
+  "У меня 20 минут в день": {
+    "en": "I have 20 minutes a day",
+    "ru": "У меня 20 минут в день"
+  },
+  "Убери вечерние напоминания": {
+    "en": "Remove evening reminders",
+    "ru": "Убери вечерние напоминания"
+  },
+  "Уведомления": {
+    "en": "Notifications",
+    "ru": "Уведомления"
+  },
+  "Удалить или архивировать привычку?": {
+    "en": "Delete or archive a habit?",
+    "ru": "Удалить или архивировать привычку?"
+  },
+  "Удалить навсегда": {
+    "en": "Delete permanently",
+    "ru": "Удалить навсегда"
+  },
+  "Управляйте привычками и отслеживайте регулярность": {
+    "en": "Manage habits and track consistency",
+    "ru": "Управляйте привычками и отслеживайте регулярность"
+  },
+  "Уточните, пожалуйста": {
+    "en": "Please clarify",
+    "ru": "Уточните, пожалуйста"
+  },
+  "ФОКУС ДНЯ": {
+    "en": "FOCUS OF THE DAY",
+    "ru": "ФОКУС ДНЯ"
+  },
+  "Хочу научиться Python": {
+    "en": "I want to learn Python",
+    "ru": "Хочу научиться Python"
+  },
+  "Хочу регулярно заниматься спортом": {
+    "en": "I want to exercise regularly",
+    "ru": "Хочу регулярно заниматься спортом"
+  },
+  "Цели: {{0}}. Привычки: {{1}}.": {
+    "en": "Targets: {{0}}. Habits: {{1}}.",
+    "ru": "Цели: {{0}}. Привычки: {{1}}."
+  },
+  "Цель": {
+    "en": "Goal",
+    "ru": "Цель"
+  },
+  "Цель: {{0}}": {
+    "en": "Goal: {{0}}",
+    "ru": "Цель: {{0}}"
+  },
+  "Частично выполнено": {
+    "en": "Partially completed",
+    "ru": "Частично выполнено"
+  },
+  "Этапы": {
+    "en": "Milestones",
+    "ru": "Этапы"
+  },
+  "Язык": {
+    "en": "Language",
+    "ru": "Язык"
+  },
+  "Язык интерфейса": {
+    "en": "Interface language",
+    "ru": "Язык интерфейса"
+  },
+  "без напоминания": {
+    "en": "without reminder",
+    "ru": "без напоминания"
+  },
+  "вечер.": {
+    "en": "evening.",
+    "ru": "вечер."
+  },
+  "выполнение по дням": {
+    "en": "execution by day",
+    "ru": "выполнение по дням"
+  },
+  "день.": {
+    "en": "afternoon.",
+    "ru": "день."
+  },
+  "дней подряд": {
+    "en": "days in a row",
+    "ru": "дней подряд"
+  },
+  "за выбранный период": {
+    "en": "for the selected period",
+    "ru": "за выбранный период"
+  },
+  "казахстан": {
+    "en": "Kazakhstan",
+    "ru": "казахстан"
+  },
+  "нет": {
+    "en": "No",
+    "ru": "нет"
+  },
+  "норм выполнено": {
+    "en": "targets completed",
+    "ru": "норм выполнено"
+  },
+  "осталось {{0}} {{1}}": {
+    "en": "{{0}} {{1}} left",
+    "ru": "осталось {{0}} {{1}}"
+  },
+  "пайтон": {
+    "en": "Python",
+    "ru": "пайтон"
+  },
+  "питон": {
+    "en": "python",
+    "ru": "питон"
+  },
+  "прогресс целей не отслеживается": {
+    "en": "Goal progress is not tracked",
+    "ru": "прогресс целей не отслеживается"
+  },
+  "среднее выполнение": {
+    "en": "average execution",
+    "ru": "среднее выполнение"
+  },
+  "тұрамын": {
+    "en": "I'm getting up",
+    "ru": "тұрамын"
+  },
+  "утро.": {
+    "en": "morning.",
+    "ru": "утро."
+  },
+  "я живу в ": {
+    "en": "I live in",
+    "ru": "я живу в "
+  },
+  "қазақстан": {
+    "en": "Kazakhstan",
+    "ru": "қазақстан"
+  },
+  "• Completed": {
+    "en": "• Completed",
+    "ru": "• Выполнено"
+  },
+  "≈ {{0}} мин осталось": {
+    "en": "≈ {{0}} min left",
+    "ru": "≈ {{0}} мин осталось"
+  },
+  "⌘N": {
+    "en": "⌘N",
+    "ru": "⌘N"
+  },
+  "⌘J": {
+    "en": "⌘J",
+    "ru": "⌘J"
+  },
+  "⌘K": {
+    "en": "⌘K",
+    "ru": "⌘K"
+  },
+  "JSON": {
+    "en": "JSON",
+    "ru": "JSON"
+  },
+  "CSV": {
+    "en": "CSV",
+    "ru": "CSV"
+  },
+  "minutes": {
+    "en": "minutes",
+    "ru": "минуты"
+  },
+  "hours": {
+    "en": "hours",
+    "ru": "часы"
+  },
+  "km": {
+    "en": "km",
+    "ru": "км"
+  },
+  "meters": {
+    "en": "meters",
+    "ru": "метры"
+  },
+  "completion": {
+    "en": "completion",
+    "ru": "выполнение"
+  },
+  "reps": {
+    "en": "reps",
+    "ru": "повторы"
+  },
+  "times": {
+    "en": "times",
+    "ru": "раз"
+  },
+  "items": {
+    "en": "items",
+    "ru": "единицы"
+  },
+  "glasses": {
+    "en": "glasses",
+    "ru": "стаканы"
+  },
+  "pages": {
+    "en": "pages",
+    "ru": "страницы"
+  },
+  "servings": {
+    "en": "servings",
+    "ru": "порции"
+  },
+  "cups": {
+    "en": "cups",
+    "ru": "чашки"
+  },
+  "sessions": {
+    "en": "sessions",
+    "ru": "занятия"
+  },
+  "words": {
+    "en": "words",
+    "ru": "слова"
+  },
+  "assignments": {
+    "en": "assignments",
+    "ru": "задания"
+  },
+  "daily": {
+    "en": "daily",
+    "ru": "ежедневно"
+  },
+  "weekdays": {
+    "en": "weekdays",
+    "ru": "по будням"
+  },
+  "weekly": {
+    "en": "weekly",
+    "ru": "еженедельно"
+  },
+  "custom": {
+    "en": "custom",
+    "ru": "своё расписание"
+  },
+  "high": {
+    "en": "high",
+    "ru": "высокий"
+  },
+  "medium": {
+    "en": "medium",
+    "ru": "средний"
+  },
+  "low": {
+    "en": "low",
+    "ru": "низкий"
+  },
+  "ok": {
+    "en": "ok",
+    "ru": "посильно"
+  },
+  "heavy": {
+    "en": "heavy",
+    "ru": "высокая нагрузка"
+  },
+  "too_heavy": {
+    "en": "too_heavy",
+    "ru": "чрезмерная нагрузка"
+  }
+}

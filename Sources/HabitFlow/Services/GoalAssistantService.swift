@@ -38,6 +38,7 @@ public enum GoalAssistantService {
             searchResults = "Используй уже найденные ссылки в текущем плане, если они ещё подходят."
         }
         var instruction = systemPrompt + "\nСегодня: \(today).\n\(deviceContext)\nТекущие данные пользователя:\n\(context)\nТекущая карточка плана (обновляй её при изменениях):\n\(planJSON(chat.plan))\nРезультаты поиска ресурсов:\n\(searchResults)"
+        instruction += "\nResponse language: " + (L10n.language == "ru" ? "Russian" : "English") + ". Use this language for message, questions and all plan descriptions. Preserve JSON schema keys and enum values."
         for attempt in 0...1 {
             var request = URLRequest(url: URL(string: "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent")!)
             request.httpMethod = "POST"

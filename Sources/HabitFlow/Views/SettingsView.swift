@@ -27,6 +27,7 @@ public struct HabitFlowBackupFileDocument: FileDocument {
 // MARK: - 2. Settings & Preferences Page (Section 2 & Section 18)
 
 public struct SettingsPreferencesView: View {
+    @AppStorage("interfaceLanguage") private var interfaceLanguage = "en"
     @EnvironmentObject private var store: HabitStore
 
     public let palette: HabitFlowPalette
@@ -35,21 +36,49 @@ public struct SettingsPreferencesView: View {
     @State private var isImportingBackup: Bool = false
     @State private var backupDocumentToExport: HabitFlowBackupFileDocument? = nil
     @State private var statusBannerMessage: String? = nil
+    @State private var selectedSection = "Внешний вид"
+    private let sections = ["Внешний вид", "Уведомления", "Данные и резервные копии", "Язык", "Аккаунт", "О приложении"]
+
+    private var displayedAppearanceMode: AppAppearanceMode {
+        if ProcessInfo.processInfo.arguments.contains("--preview-theme=dark") { return .dark }
+        if ProcessInfo.processInfo.arguments.contains("--preview-theme=light") { return .light }
+        return store.settings.appearanceMode
+    }
 
     public init(palette: HabitFlowPalette) {
         self.palette = palette
     }
 
     public var body: some View {
-        ScrollView {
+        HStack(alignment: .top, spacing: 0) {
+            VStack(alignment: .leading, spacing: 5) {
+                ForEach(sections, id: \.self) { section in
+                    Button { selectedSection = section } label: {
+                        Text(L10n.tr(section))
+                            .font(HabitFlowTypography.body(12, weight: selectedSection == section ? .semibold : .medium))
+                            .foregroundStyle(selectedSection == section ? palette.accentText : palette.menuText)
+                            .frame(maxWidth: .infinity, minHeight: 36, alignment: .leading)
+                            .padding(.horizontal, 12)
+                            .background(RoundedRectangle(cornerRadius: 12)
+                                .fill(selectedSection == section ? palette.activeNavigation : Color.clear))
+                    }
+                    .buttonStyle(.plain)
+                }
+                Spacer()
+            }
+            .padding(14)
+            .frame(width: 210)
+            .background(palette.sidebarBackground)
+            Rectangle().fill(palette.subtleBorder).frame(width: 1)
+            ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 // Header
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Settings")
-                        .font(.system(size: 26, weight: .bold, design: .rounded))
+                    Text(L10n.tr("Settings"))
+                        .font(HabitFlowTypography.display(42, weight: .bold))
                         .foregroundStyle(palette.primaryText)
-                    Text("Customize appearance, schedule defaults, notifications, and local offline backups.")
-                        .font(.system(size: 13))
+                    Text(L10n.tr(selectedSection))
+                        .font(HabitFlowTypography.body(13))
                         .foregroundStyle(palette.secondaryText)
                 }
 
@@ -57,89 +86,73 @@ public struct SettingsPreferencesView: View {
                     HStack(spacing: 8) {
                         Image(systemName: "checkmark.circle.fill")
                             .foregroundStyle(.green)
-                        Text(msg)
+                        Text(L10n.tr(msg))
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundStyle(palette.primaryText)
                         Spacer()
-                        Button("Dismiss") { statusBannerMessage = nil }
+                        Button(L10n.tr("Dismiss")) { statusBannerMessage = nil }
                             .font(.system(size: 11))
                     }
                     .habitFlowCard(palette: palette, padding: 12)
                 }
 
-                // 1. Appearance Section (Dark Mode, Light Mode, System Appearance, Accent Color)
+                if selectedSection == "Внешний вид" {
+                // 1. Appearance Section
                 VStack(alignment: .leading, spacing: 14) {
-                    Label("Appearance", systemImage: "paintbrush.fill")
+                    Label(L10n.tr("Appearance"), systemImage: "paintbrush.fill")
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(palette.primaryText)
 
-                    HStack {
-                        Text("Theme Mode")
-                            .font(.system(size: 13, weight: .medium))
-                            .foregroundStyle(palette.primaryText)
-                        Spacer()
-                        Picker("Theme Mode", selection: $store.settings.appearanceMode) {
-                            ForEach(AppAppearanceMode.allCases) { mode in
-                                Text(mode.rawValue).tag(mode)
-                            }
-                        }
-                        .pickerStyle(.segmented)
-                        .frame(width: 340)
-                    }
-
-                    Divider()
-
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Accent Color")
-                            .font(.system(size: 13, weight: .medium))
-                            .foregroundStyle(palette.primaryText)
-
-                        HStack(spacing: 12) {
-                            ForEach(AccentThemeColor.allCases) { theme in
-                                let isSelected = (store.settings.accentColor == theme)
-                                Button {
-                                    store.settings.accentColor = theme
-                                } label: {
-                                    HStack(spacing: 6) {
-                                        Circle()
-                                            .fill(theme.color)
-                                            .frame(width: 16, height: 16)
-                                        Text(theme.rawValue)
-                                            .font(.system(size: 12, weight: isSelected ? .bold : .medium))
-                                            .foregroundStyle(palette.primaryText)
-                                    }
-                                    .padding(.horizontal, 10)
-                                    .padding(.vertical, 6)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                            .fill(isSelected ? theme.color.opacity(0.18) : palette.secondarySurface)
-                                    )
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                            .strokeBorder(isSelected ? theme.color : Color.clear, lineWidth: 1.5)
-                                    )
+                    HStack(spacing: 12) {
+                        ForEach(AppAppearanceMode.allCases) { mode in
+                            Button { store.settings.appearanceMode = mode } label: {
+                                VStack(alignment: .leading, spacing: 9) {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(mode == .light ? Color.white : Color(red: 0.06, green: 0.11, blue: 0.25))
+                                        .frame(height: 55)
+                                        .overlay(alignment: .leading) {
+                                            RoundedRectangle(cornerRadius: 4)
+                                                .fill(mode == .light ? Color(red: 0.95, green: 0.96, blue: 0.98) : Color(red: 0.09, green: 0.16, blue: 0.36))
+                                                .frame(width: 24)
+                                                .padding(6)
+                                        }
+                                    Text(L10n.tr(mode == .light ? "Светлая" : mode == .dark ? "Тёмная" : "Как в системе"))
+                                        .font(HabitFlowTypography.body(12, weight: .medium))
+                                        .foregroundStyle(palette.primaryText)
                                 }
-                                .buttonStyle(.plain)
+                                .padding(10)
+                                .frame(maxWidth: .infinity)
+                                .background(RoundedRectangle(cornerRadius: 14).fill(palette.secondarySurface))
+                                .overlay(RoundedRectangle(cornerRadius: 14)
+                                    .strokeBorder(displayedAppearanceMode == mode ? palette.accent : palette.subtleBorder,
+                                                  lineWidth: displayedAppearanceMode == mode ? 2 : 1))
                             }
+                            .buttonStyle(.plain)
                         }
                     }
+
+                    Text(L10n.tr("Единый акцент приложения — тёплый оранжевый."))
+                        .font(HabitFlowTypography.body(12))
+                        .foregroundStyle(palette.secondaryText)
                 }
                 .habitFlowCard(palette: palette, padding: 18)
+                }
 
+                if selectedSection == "Уведомления" {
                 // 2. Preferences Section (Week Starting Day, Default Frequency, Notifications, Dashboard Controls)
                 VStack(alignment: .leading, spacing: 14) {
-                    Label("Preferences", systemImage: "slider.horizontal.3")
+                    Label(L10n.tr("Preferences"), systemImage: "slider.horizontal.3")
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(palette.primaryText)
 
                     HStack {
-                        Text("Week Starting Day")
+                        Text(L10n.tr("Week Starting Day"))
                             .font(.system(size: 13, weight: .medium))
                             .foregroundStyle(palette.primaryText)
                         Spacer()
-                        Picker("Week Starting Day", selection: $store.settings.weekStartDay) {
+                        Picker(L10n.tr("Week Starting Day"), selection: $store.settings.weekStartDay) {
                             ForEach(WeekStartDay.allCases) { day in
-                                Text(day.rawValue).tag(day)
+                                Text(L10n.tr(day.rawValue)).tag(day)
                             }
                         }
                         .pickerStyle(.segmented)
@@ -149,13 +162,13 @@ public struct SettingsPreferencesView: View {
                     Divider()
 
                     HStack {
-                        Text("Default Habit Frequency")
+                        Text(L10n.tr("Default Habit Frequency"))
                             .font(.system(size: 13, weight: .medium))
                             .foregroundStyle(palette.primaryText)
                         Spacer()
-                        Picker("Default Habit Frequency", selection: $store.settings.defaultFrequency) {
+                        Picker(L10n.tr("Default Habit Frequency"), selection: $store.settings.defaultFrequency) {
                             ForEach(HabitFrequency.allCases) { freq in
-                                Text(freq.rawValue).tag(freq)
+                                Text(L10n.tr(freq.rawValue)).tag(freq)
                             }
                         }
                         .frame(width: 220)
@@ -163,13 +176,13 @@ public struct SettingsPreferencesView: View {
 
                     Divider()
 
-                    Toggle("Show Decrease [ - ] Buttons on Dashboard Rows", isOn: $store.settings.showDecreaseButtonsOnDashboard)
+                    Toggle(L10n.tr("Show Decrease [ - ] Buttons on Dashboard Rows"), isOn: $store.settings.showDecreaseButtonsOnDashboard)
                         .font(.system(size: 13, weight: .medium))
 
-                    Toggle("Show Motivational Subtitle in Dashboard Header", isOn: $store.settings.showMotivationalGreeting)
+                    Toggle(L10n.tr("Show Motivational Subtitle in Dashboard Header"), isOn: $store.settings.showMotivationalGreeting)
                         .font(.system(size: 13, weight: .medium))
 
-                    Toggle("Enable Native macOS Habit Reminder Notifications", isOn: $store.settings.notificationsEnabled)
+                    Toggle(L10n.tr("Enable Native macOS Habit Reminder Notifications"), isOn: $store.settings.notificationsEnabled)
                         .font(.system(size: 13, weight: .medium))
                         .onChange(of: store.settings.notificationsEnabled) { _, enabled in
                             if enabled {
@@ -182,14 +195,19 @@ public struct SettingsPreferencesView: View {
                         }
                 }
                 .habitFlowCard(palette: palette, padding: 18)
+                Text(L10n.tr("Повторное вечернее напоминание и утренняя сводка пока недоступны."))
+                    .font(HabitFlowTypography.body(12))
+                    .foregroundStyle(palette.secondaryText)
+                }
 
+                if selectedSection == "Данные и резервные копии" {
                 // 3. Data & Offline Backup Management Section
                 VStack(alignment: .leading, spacing: 14) {
-                    Label("Local Data & Backups", systemImage: "externaldrive.fill.badge.checkmark")
+                    Label(L10n.tr("Local Data & Backups"), systemImage: "externaldrive.fill.badge.checkmark")
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(palette.primaryText)
 
-                    Text("All habits, historical target changes, progress entries, and daily notes are saved locally offline.")
+                    Text(L10n.tr("All habits, historical target changes, progress entries, and daily notes are saved locally offline."))
                         .font(.system(size: 12))
                         .foregroundStyle(palette.secondaryText)
 
@@ -200,45 +218,82 @@ public struct SettingsPreferencesView: View {
                                 isExportingBackup = true
                             }
                         } label: {
-                            Label("Export Data / Create Backup...", systemImage: "square.and.arrow.up")
+                            Label(L10n.tr("Export Data / Create Backup..."), systemImage: "square.and.arrow.up")
                         }
                         .buttonStyle(.borderedProminent)
 
                         Button {
                             isImportingBackup = true
                         } label: {
-                            Label("Import / Restore Backup...", systemImage: "square.and.arrow.down")
+                            Label(L10n.tr("Import / Restore Backup..."), systemImage: "square.and.arrow.down")
                         }
                         .buttonStyle(.bordered)
                     }
                 }
                 .habitFlowCard(palette: palette, padding: 18)
+                Text(L10n.tr("CSV-экспорт и удаление всех данных пока недоступны."))
+                    .font(HabitFlowTypography.body(12))
+                    .foregroundStyle(palette.secondaryText)
+                }
 
+                if selectedSection == "Язык" {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(L10n.tr("Язык интерфейса"))
+                            .font(HabitFlowTypography.body(16, weight: .semibold))
+                            .foregroundStyle(palette.primaryText)
+                        Picker(L10n.tr("Язык интерфейса"), selection: $interfaceLanguage) {
+                            Text("English").tag("en")
+                            Text("Русский").tag("ru")
+                        }
+                        .pickerStyle(.segmented)
+                        Text(L10n.tr("Language changes apply immediately and are saved on this Mac."))
+                            .font(HabitFlowTypography.body(12))
+                            .foregroundStyle(palette.secondaryText)
+                    }
+                    .habitFlowCard(palette: palette)
+                }
+
+                if selectedSection == "Аккаунт" {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(L10n.tr("Локальный профиль"))
+                            .font(HabitFlowTypography.body(16, weight: .semibold))
+                            .foregroundStyle(palette.primaryText)
+                        Text(L10n.tr("Данные хранятся на этом Mac. Учётная запись и синхронизация пока недоступны."))
+                            .font(HabitFlowTypography.body(12))
+                            .foregroundStyle(palette.secondaryText)
+                    }
+                    .habitFlowCard(palette: palette)
+                }
+
+                if selectedSection == "О приложении" {
                 // 4. Application Info Section
                 VStack(alignment: .leading, spacing: 10) {
-                    Label("Application", systemImage: "info.circle.fill")
+                    Label(L10n.tr("Application"), systemImage: "info.circle.fill")
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundStyle(palette.primaryText)
 
                     HStack {
-                        Text("HabitFlow for macOS")
+                        Text(L10n.tr("HabitFlow for macOS"))
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundStyle(palette.primaryText)
                         Spacer()
-                        Text("Version 1.0.0 (Native Swift & SwiftUI)")
+                        Text(L10n.tr("Version 1.0.0 (Native Swift & SwiftUI)"))
                             .font(.system(size: 12))
                             .foregroundStyle(palette.secondaryText)
                     }
 
-                    Text("Designed for focused daily consistency, instant quick-add tracking, effective-dated target history, and distraction-free conditional missed-day reviews.")
+                    Text(L10n.tr("Designed for focused daily consistency, instant quick-add tracking, effective-dated target history, and distraction-free conditional missed-day reviews."))
                         .font(.system(size: 12))
                         .foregroundStyle(palette.secondaryText)
                 }
                 .habitFlowCard(palette: palette, padding: 18)
+                }
             }
-            .padding(32)
-            .frame(maxWidth: 920, alignment: .leading)
+            .padding(.horizontal, 40)
+            .padding(.vertical, 32)
+            .frame(maxWidth: 1060, alignment: .leading)
             .frame(maxWidth: .infinity, alignment: .center)
+            }
         }
         .fileExporter(
             isPresented: $isExportingBackup,

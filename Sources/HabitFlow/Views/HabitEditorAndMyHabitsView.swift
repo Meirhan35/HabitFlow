@@ -13,12 +13,17 @@ public enum HabitEditorMode: Equatable {
 }
 
 public struct HabitEditorModalView: View {
+    @AppStorage("interfaceLanguage") private var interfaceLanguage = "en"
     @EnvironmentObject private var store: HabitStore
     @Environment(\.dismiss) private var dismiss
 
     public let mode: HabitEditorMode
     public let palette: HabitFlowPalette
     public let onSave: (Habit) -> Void
+    public let onDiscussWithAssistant: (String) -> Void
+
+    @State private var naturalLanguageInput: String = ""
+    @State private var editorKind = "Привычка"
 
     @State private var name: String = ""
     @State private var habitDescription: String = ""
@@ -49,10 +54,13 @@ public struct HabitEditorModalView: View {
         "pencil.and.outline", "laptopcomputer", "leaf.fill", "moon.stars.fill"
     ]
 
-    public init(mode: HabitEditorMode, palette: HabitFlowPalette, onSave: @escaping (Habit) -> Void) {
+    public init(mode: HabitEditorMode, palette: HabitFlowPalette,
+                onSave: @escaping (Habit) -> Void,
+                onDiscussWithAssistant: @escaping (String) -> Void = { _ in }) {
         self.mode = mode
         self.palette = palette
         self.onSave = onSave
+        self.onDiscussWithAssistant = onDiscussWithAssistant
     }
 
     public var body: some View {
@@ -60,11 +68,11 @@ public struct HabitEditorModalView: View {
             // Modal Header
             HStack {
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(mode.isEditing ? "Edit Habit" : "Create New Habit")
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                    Text(L10n.tr(mode.isEditing ? "Edit Habit" : "Add Habit"))
+                        .font(HabitFlowTypography.display(31, weight: .bold))
                         .foregroundStyle(palette.primaryText)
-                    Text("Configure measurement type, daily & weekly targets, and quick-add increments.")
-                        .font(.system(size: 12))
+                    Text(L10n.tr("Задайте норму и расписание для новой привычки"))
+                        .font(HabitFlowTypography.body(12))
                         .foregroundStyle(palette.secondaryText)
                 }
                 Spacer()
@@ -85,28 +93,75 @@ public struct HabitEditorModalView: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
+                    if !mode.isEditing {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(L10n.tr("Опишите обычными словами"))
+                                .font(HabitFlowTypography.body(14, weight: .semibold))
+                                .foregroundStyle(palette.primaryText)
+                            TextField(L10n.tr("Например: хочу читать по 20 страниц каждый день"), text: $naturalLanguageInput)
+                                .textFieldStyle(.roundedBorder)
+                            HStack {
+                                Text(L10n.tr("Для разбора текста и плана откройте Assistant"))
+                                    .font(HabitFlowTypography.body(11))
+                                    .foregroundStyle(palette.secondaryText)
+                                Spacer()
+                                Button(L10n.tr("Обсудить с Assistant")) {
+                                    onDiscussWithAssistant(naturalLanguageInput)
+                                    dismiss()
+                                }
+                                .font(HabitFlowTypography.body(12, weight: .semibold))
+                                .disabled(naturalLanguageInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                            }
+                        }
+                        .habitFlowCard(palette: palette, padding: 18)
+                        Picker(L10n.tr("Тип"), selection: $editorKind) {
+                            Text(L10n.tr("Привычка")).tag("Привычка")
+                            Text(L10n.tr("Цель")).tag("Цель")
+                        }
+                        .pickerStyle(.segmented)
+                        .frame(width: 220)
+                    }
+                    if editorKind == "Цель" && !mode.isEditing {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(L10n.tr("Постановка цели"))
+                                .font(HabitFlowTypography.body(15, weight: .semibold))
+                                .foregroundStyle(palette.primaryText)
+                            Text(L10n.tr("Assistant уточнит срок, этапы и привычки, затем покажет план перед сохранением. Цель не будет создана без подтверждения в чате."))
+                                .font(HabitFlowTypography.body(12))
+                                .foregroundStyle(palette.secondaryText)
+                        }
+                        .habitFlowCard(palette: palette)
+                    } else {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(L10n.tr("Вот что я понял"))
+                            .font(HabitFlowTypography.body(14, weight: .semibold))
+                            .foregroundStyle(palette.primaryText)
+                        Text(L10n.tr("Поля ниже заполняются вручную. Автоматический разбор доступен в Assistant."))
+                            .font(HabitFlowTypography.body(11))
+                            .foregroundStyle(palette.secondaryText)
+                    }
                     // Basic Identity
                     VStack(alignment: .leading, spacing: 12) {
-                        Text("Habit Identity")
+                        Text(L10n.tr("Habit Identity"))
                             .font(.system(size: 13, weight: .bold))
                             .foregroundStyle(palette.accent)
 
                         HStack(spacing: 12) {
                             VStack(alignment: .leading, spacing: 6) {
-                                Text("Habit Name")
+                                Text(L10n.tr("Habit Name"))
                                     .font(.system(size: 12, weight: .semibold))
-                                TextField("e.g., Read a book, Run 5 km, Drink Water", text: $name)
+                                TextField(L10n.tr("e.g., Read a book, Run 5 km, Drink Water"), text: $name)
                                     .textFieldStyle(.roundedBorder)
                             }
 
                             VStack(alignment: .leading, spacing: 6) {
-                                Text("Category")
+                                Text(L10n.tr("Category"))
                                     .font(.system(size: 12, weight: .semibold))
                                 HStack(spacing: 6) {
                                     if isAddingCustomCategory {
-                                        TextField("Custom category", text: $customCategoryName)
+                                        TextField(L10n.tr("Custom category"), text: $customCategoryName)
                                             .textFieldStyle(.roundedBorder)
-                                        Button("Use") {
+                                        Button(L10n.tr("Use")) {
                                             let trimmed = customCategoryName.trimmingCharacters(in: .whitespacesAndNewlines)
                                             if !trimmed.isEmpty {
                                                 category = trimmed
@@ -117,15 +172,15 @@ public struct HabitEditorModalView: View {
                                             }
                                         }
                                     } else {
-                                        Picker("", selection: $category) {
+                                        Picker(L10n.tr(""), selection: $category) {
                                             ForEach(store.settings.allCategories, id: \.self) { cat in
-                                                Text(cat).tag(cat)
+                                                Text(L10n.tr(cat)).tag(cat)
                                             }
                                         }
                                         .labelsHidden()
                                         .frame(width: 170)
 
-                                        Button("+ Custom") {
+                                        Button(L10n.tr("+ Custom")) {
                                             isAddingCustomCategory = true
                                         }
                                         .font(.system(size: 11, weight: .semibold))
@@ -135,15 +190,15 @@ public struct HabitEditorModalView: View {
                         }
 
                         VStack(alignment: .leading, spacing: 6) {
-                            Text("Description (Optional)")
+                            Text(L10n.tr("Description (Optional)"))
                                 .font(.system(size: 12, weight: .semibold))
-                            TextField("Why does this habit matter to you?", text: $habitDescription)
+                            TextField(L10n.tr("Why does this habit matter to you?"), text: $habitDescription)
                                 .textFieldStyle(.roundedBorder)
                         }
 
                         // Icon Picker
                         VStack(alignment: .leading, spacing: 6) {
-                            Text("Icon or Emoji")
+                            Text(L10n.tr("Icon or Emoji"))
                                 .font(.system(size: 12, weight: .semibold))
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 8) {
@@ -154,7 +209,7 @@ public struct HabitEditorModalView: View {
                                         } label: {
                                             Image(systemName: sym)
                                                 .font(.system(size: 14, weight: .semibold))
-                                                .foregroundStyle(isSelected ? .white : palette.primaryText)
+                                                .foregroundStyle(isSelected ? palette.onAccent : palette.primaryText)
                                                 .frame(width: 32, height: 32)
                                                 .background(
                                                     RoundedRectangle(cornerRadius: 8, style: .continuous)
@@ -171,7 +226,7 @@ public struct HabitEditorModalView: View {
 
                     // Six Measurement Types Dynamic Section
                     VStack(alignment: .leading, spacing: 12) {
-                        Text("Measurement Type & Targets")
+                        Text(L10n.tr("Measurement Type & Targets"))
                             .font(.system(size: 13, weight: .bold))
                             .foregroundStyle(palette.accent)
 
@@ -185,7 +240,7 @@ public struct HabitEditorModalView: View {
                                     HStack(spacing: 8) {
                                         Image(systemName: mType.iconName)
                                             .font(.system(size: 13, weight: .semibold))
-                                        Text(mType.rawValue)
+                                        Text(L10n.tr(mType.rawValue))
                                             .font(.system(size: 12, weight: .semibold))
                                         Spacer()
                                     }
@@ -201,7 +256,7 @@ public struct HabitEditorModalView: View {
                             }
                         }
 
-                        Text(measurementType.description)
+                        Text(L10n.tr(measurementType.description))
                             .font(.system(size: 11))
                             .foregroundStyle(palette.secondaryText)
 
@@ -212,17 +267,17 @@ public struct HabitEditorModalView: View {
 
                     // Schedule & Reminders
                     VStack(alignment: .leading, spacing: 12) {
-                        Text("Schedule & Reminders")
+                        Text(L10n.tr("Schedule & Reminders"))
                             .font(.system(size: 13, weight: .bold))
                             .foregroundStyle(palette.accent)
 
                         HStack(spacing: 16) {
                             VStack(alignment: .leading, spacing: 6) {
-                                Text("Frequency")
+                                Text(L10n.tr("Frequency"))
                                     .font(.system(size: 12, weight: .semibold))
-                                Picker("", selection: $frequency) {
+                                Picker(L10n.tr(""), selection: $frequency) {
                                     ForEach(HabitFrequency.allCases) { freq in
-                                        Text(freq.rawValue).tag(freq)
+                                        Text(L10n.tr(freq.rawValue)).tag(freq)
                                     }
                                 }
                                 .labelsHidden()
@@ -230,9 +285,9 @@ public struct HabitEditorModalView: View {
                             }
 
                             VStack(alignment: .leading, spacing: 6) {
-                                Text("Estimated Duration (mins, optional)")
+                                Text(L10n.tr("Estimated Duration (mins, optional)"))
                                     .font(.system(size: 12, weight: .semibold))
-                                TextField("e.g., 30", text: $estimatedDurationText)
+                                TextField(L10n.tr("e.g., 30"), text: $estimatedDurationText)
                                     .textFieldStyle(.roundedBorder)
                                     .frame(width: 120)
                             }
@@ -249,7 +304,7 @@ public struct HabitEditorModalView: View {
                                             selectedWeekdays.insert(day)
                                         }
                                     } label: {
-                                        Text(day.shortName)
+                                        Text(L10n.tr(day.shortName))
                                             .font(.system(size: 11, weight: .bold))
                                             .foregroundStyle(isSelected ? .white : palette.primaryText)
                                             .padding(.horizontal, 10)
@@ -267,12 +322,12 @@ public struct HabitEditorModalView: View {
                         Divider()
 
                         HStack(spacing: 16) {
-                            Toggle("Enable Daily Reminder Notification", isOn: $reminderEnabled)
+                            Toggle(L10n.tr("Enable Daily Reminder Notification"), isOn: $reminderEnabled)
                                 .font(.system(size: 12, weight: .semibold))
 
                             if reminderEnabled {
                                 HStack(spacing: 6) {
-                                    Picker("Hour", selection: $reminderHour) {
+                                    Picker(L10n.tr("Hour"), selection: $reminderHour) {
                                         ForEach(0..<24, id: \.self) { h in
                                             Text(String(format: "%02d", h)).tag(h)
                                         }
@@ -280,10 +335,10 @@ public struct HabitEditorModalView: View {
                                     .labelsHidden()
                                     .frame(width: 65)
 
-                                    Text(":")
+                                    Text(L10n.tr(":"))
                                         .font(.system(size: 13, weight: .bold))
 
-                                    Picker("Minute", selection: $reminderMinute) {
+                                    Picker(L10n.tr("Minute"), selection: $reminderMinute) {
                                         ForEach([0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55], id: \.self) { m in
                                             Text(String(format: "%02d", m)).tag(m)
                                         }
@@ -296,8 +351,10 @@ public struct HabitEditorModalView: View {
                     }
                     .habitFlowCard(palette: palette, padding: 16)
 
+                    }
+
                     if let validationMessage = validationMessage {
-                        Text(validationMessage)
+                        Text(L10n.tr(validationMessage))
                             .font(.system(size: 12, weight: .semibold))
                             .foregroundStyle(.red)
                     }
@@ -310,21 +367,32 @@ public struct HabitEditorModalView: View {
             // Modal Footer
             HStack {
                 if mode.isEditing {
-                    Text("Target changes are saved with today's effective date so historical completion percentages remain intact.")
+                    Text(L10n.tr("Target changes are saved with today's effective date so historical completion percentages remain intact."))
                         .font(.system(size: 11))
                         .foregroundStyle(palette.secondaryText)
                 }
                 Spacer()
-                Button("Cancel") {
+                Button(L10n.tr("Отмена")) {
                     dismiss()
                 }
                 .keyboardShortcut(.cancelAction)
 
-                Button(mode.isEditing ? "Save Changes" : "Create Habit") {
-                    saveHabit()
+                Button(L10n.tr(mode.isEditing ? "Save Changes" : (editorKind == "Цель" ? "Обсудить цель" : "Сохранить привычку"))) {
+                    if editorKind == "Цель" && !mode.isEditing {
+                        onDiscussWithAssistant(naturalLanguageInput)
+                        dismiss()
+                    } else {
+                        saveHabit()
+                    }
                 }
-                .buttonStyle(.borderedProminent)
+                .font(HabitFlowTypography.body(12, weight: .semibold))
+                .foregroundStyle(palette.onAccent)
+                .padding(.horizontal, 16)
+                .frame(height: 36)
+                .background(Capsule().fill(palette.accent))
+                .buttonStyle(.plain)
                 .keyboardShortcut(.defaultAction)
+                .disabled(editorKind == "Цель" && naturalLanguageInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 14)
@@ -332,6 +400,7 @@ public struct HabitEditorModalView: View {
         }
         .frame(width: 640, height: 660)
         .background(palette.windowBackground)
+        .tint(palette.accent)
         .onAppear(perform: populateInitialValues)
     }
 
@@ -341,11 +410,11 @@ public struct HabitEditorModalView: View {
         case .duration:
             HStack(spacing: 14) {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Time Unit")
+                    Text(L10n.tr("Time Unit"))
                         .font(.system(size: 11, weight: .semibold))
-                    Picker("", selection: $unit) {
-                        Text("Minutes").tag("minutes")
-                        Text("Hours").tag("hours")
+                    Picker(L10n.tr(""), selection: $unit) {
+                        Text(L10n.tr("Minutes")).tag("minutes")
+                        Text(L10n.tr("Hours")).tag("hours")
                     }
                     .labelsHidden()
                     .frame(width: 120)
@@ -356,11 +425,11 @@ public struct HabitEditorModalView: View {
         case .distance:
             HStack(spacing: 14) {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Distance Unit")
+                    Text(L10n.tr("Distance Unit"))
                         .font(.system(size: 11, weight: .semibold))
-                    Picker("", selection: $unit) {
-                        Text("Kilometers (km)").tag("km")
-                        Text("Meters (m)").tag("meters")
+                    Picker(L10n.tr(""), selection: $unit) {
+                        Text(L10n.tr("Kilometers (km)")).tag("km")
+                        Text(L10n.tr("Meters (m)")).tag("meters")
                     }
                     .labelsHidden()
                     .frame(width: 150)
@@ -370,14 +439,14 @@ public struct HabitEditorModalView: View {
 
         case .checkbox:
             HStack(spacing: 16) {
-                Label("Single-click daily completion button (no numerical target needed).", systemImage: "checkmark.circle.fill")
+                Label(L10n.tr("Single-click daily completion button (no numerical target needed)."), systemImage: "checkmark.circle.fill")
                     .font(.system(size: 12, weight: .medium))
                     .foregroundStyle(palette.primaryText)
                 Spacer()
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Weekly Target (sessions, optional)")
+                    Text(L10n.tr("Weekly Target (sessions, optional)"))
                         .font(.system(size: 11, weight: .semibold))
-                    TextField("e.g., 5", text: $weeklyTargetText)
+                    TextField(L10n.tr("e.g., 5"), text: $weeklyTargetText)
                         .textFieldStyle(.roundedBorder)
                         .frame(width: 110)
                 }
@@ -386,9 +455,9 @@ public struct HabitEditorModalView: View {
         case .counter:
             HStack(spacing: 14) {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Repetition Label")
+                    Text(L10n.tr("Repetition Label"))
                         .font(.system(size: 11, weight: .semibold))
-                    TextField("reps, words, exercises", text: $unit)
+                    TextField(L10n.tr("reps, words, exercises"), text: $unit)
                         .textFieldStyle(.roundedBorder)
                         .frame(width: 140)
                 }
@@ -398,7 +467,7 @@ public struct HabitEditorModalView: View {
         case .quantity, .customUnit:
             HStack(spacing: 14) {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(measurementType == .quantity ? "Quantity Unit" : "Custom Unit Name")
+                    Text(L10n.tr(measurementType == .quantity ? "Quantity Unit" : "Custom Unit Name"))
                         .font(.system(size: 11, weight: .semibold))
                     TextField(measurementType == .quantity ? "glasses, pages, servings" : "pages, sessions, assignments", text: $unit)
                         .textFieldStyle(.roundedBorder)
@@ -412,25 +481,25 @@ public struct HabitEditorModalView: View {
     private var numericalTargetInputs: some View {
         HStack(spacing: 14) {
             VStack(alignment: .leading, spacing: 5) {
-                Text("Daily Target")
+                Text(L10n.tr("Daily Target"))
                     .font(.system(size: 11, weight: .semibold))
-                TextField("e.g., 30", text: $dailyTargetText)
+                TextField(L10n.tr("e.g., 30"), text: $dailyTargetText)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 95)
             }
 
             VStack(alignment: .leading, spacing: 5) {
-                Text("Quick-Add (+) Increment")
+                Text(L10n.tr("Quick-Add (+) Increment"))
                     .font(.system(size: 11, weight: .semibold))
-                TextField("e.g., 5", text: $quickAddIncrementText)
+                TextField(L10n.tr("e.g., 5"), text: $quickAddIncrementText)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 95)
             }
 
             VStack(alignment: .leading, spacing: 5) {
-                Text("Weekly Target (Optional)")
+                Text(L10n.tr("Weekly Target (Optional)"))
                     .font(.system(size: 11, weight: .semibold))
-                TextField("Auto", text: $weeklyTargetText)
+                TextField(L10n.tr("Auto"), text: $weeklyTargetText)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 95)
             }
@@ -563,200 +632,6 @@ public struct HabitEditorModalView: View {
             existing.estimatedDurationMinutes = resolvedEstDuration
             onSave(existing)
             dismiss()
-        }
-    }
-}
-
-// MARK: - 2. My Habits Management View (Section 6 & Section 13)
-
-public struct MyHabitsView: View {
-    @EnvironmentObject private var store: HabitStore
-
-    public let palette: HabitFlowPalette
-    public let onAddHabit: () -> Void
-    public let onEditHabit: (Habit) -> Void
-    public let onInspectHabitStats: (Habit) -> Void
-
-    @State private var selectedCategoryFilter: String = "All"
-    @State private var habitPendingDeletion: Habit? = nil
-
-    public init(
-        palette: HabitFlowPalette,
-        onAddHabit: @escaping () -> Void,
-        onEditHabit: @escaping (Habit) -> Void,
-        onInspectHabitStats: @escaping (Habit) -> Void
-    ) {
-        self.palette = palette
-        self.onAddHabit = onAddHabit
-        self.onEditHabit = onEditHabit
-        self.onInspectHabitStats = onInspectHabitStats
-    }
-
-    private var visibleHabits: [Habit] {
-        store.habits.filter { habit in
-            guard !habit.isArchived else { return false }
-            if selectedCategoryFilter == "All" { return true }
-            return habit.category == selectedCategoryFilter
-        }
-    }
-
-    public var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 22) {
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("My Habits")
-                            .font(.system(size: 26, weight: .bold, design: .rounded))
-                            .foregroundStyle(palette.primaryText)
-                        Text("Manage active and paused habits, adjust flexible targets, or inspect per-habit analytics.")
-                            .font(.system(size: 13))
-                            .foregroundStyle(palette.secondaryText)
-                    }
-                    Spacer()
-                    Button(action: onAddHabit) {
-                        Label("Add Habit", systemImage: "plus")
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 14)
-                            .padding(.vertical, 9)
-                            .background(RoundedRectangle(cornerRadius: 9).fill(palette.accent))
-                    }
-                    .buttonStyle(.plain)
-                }
-
-                // Category Filter Bar
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 8) {
-                        ForEach(["All"] + store.settings.allCategories, id: \.self) { cat in
-                            let selected = (selectedCategoryFilter == cat)
-                            Button {
-                                selectedCategoryFilter = cat
-                            } label: {
-                                Text(cat)
-                                    .font(.system(size: 12, weight: .semibold))
-                                    .foregroundStyle(selected ? .white : palette.primaryText)
-                                    .padding(.horizontal, 12)
-                                    .padding(.vertical, 6)
-                                    .background(
-                                        Capsule()
-                                            .fill(selected ? palette.accent : palette.cardBackground)
-                                    )
-                            }
-                            .buttonStyle(.plain)
-                        }
-                    }
-                }
-
-                // Habits List
-                VStack(spacing: 12) {
-                    ForEach(visibleHabits) { habit in
-                        let st = store.status(for: habit, on: store.currentDateKey)
-                        HStack(spacing: 14) {
-                            HabitIconBadge(
-                                icon: habit.icon,
-                                accent: habit.isPaused ? .gray : palette.accent,
-                                isCompleted: st.isCompleted,
-                                size: 42
-                            )
-
-                            VStack(alignment: .leading, spacing: 4) {
-                                HStack(spacing: 8) {
-                                    Text(habit.name)
-                                        .font(.system(size: 15, weight: .bold))
-                                        .foregroundStyle(palette.primaryText)
-
-                                    Text(habit.measurementType.rawValue)
-                                        .font(.system(size: 10, weight: .semibold))
-                                        .foregroundStyle(palette.accent)
-                                        .padding(.horizontal, 7)
-                                        .padding(.vertical, 2)
-                                        .background(Capsule().fill(palette.accent.opacity(0.14)))
-
-                                    Text(habit.category)
-                                        .font(.system(size: 10, weight: .medium))
-                                        .foregroundStyle(palette.secondaryText)
-                                        .padding(.horizontal, 7)
-                                        .padding(.vertical, 2)
-                                        .background(Capsule().fill(palette.secondarySurface))
-
-                                    if habit.isPaused {
-                                        Text("PAUSED")
-                                            .font(.system(size: 10, weight: .bold))
-                                            .foregroundStyle(.orange)
-                                            .padding(.horizontal, 7)
-                                            .padding(.vertical, 2)
-                                            .background(Capsule().fill(Color.orange.opacity(0.16)))
-                                    }
-                                }
-
-                                Text("Daily Target: \(NumberFormattingHelper.formatWithUnit(habit.dailyTarget, unit: habit.unit, measurementType: habit.measurementType)) • Quick-Add: +\(NumberFormattingHelper.format(habit.quickAddIncrement)) • \(habit.frequency.rawValue)")
-                                    .font(.system(size: 12))
-                                    .foregroundStyle(palette.secondaryText)
-                            }
-
-                            Spacer()
-
-                            Button {
-                                onInspectHabitStats(habit)
-                            } label: {
-                                Label("Stats", systemImage: "chart.line.uptrend.xyaxis")
-                                    .font(.system(size: 12, weight: .medium))
-                            }
-                            .buttonStyle(.bordered)
-
-                            Button {
-                                onEditHabit(habit)
-                            } label: {
-                                Label("Edit", systemImage: "slider.horizontal.3")
-                                    .font(.system(size: 12, weight: .medium))
-                            }
-                            .buttonStyle(.bordered)
-
-                            Button {
-                                store.togglePauseHabit(habit.id)
-                            } label: {
-                                Text(habit.isPaused ? "Resume" : "Pause")
-                                    .font(.system(size: 12, weight: .medium))
-                            }
-                            .buttonStyle(.bordered)
-
-                            Button {
-                                habitPendingDeletion = habit
-                            } label: {
-                                Image(systemName: "trash")
-                                    .foregroundStyle(.red)
-                            }
-                            .buttonStyle(.bordered)
-                        }
-                        .habitFlowCard(palette: palette, padding: 16)
-                    }
-                }
-            }
-            .padding(32)
-            .frame(maxWidth: 960, alignment: .leading)
-            .frame(maxWidth: .infinity, alignment: .center)
-        }
-        .alert(
-            "Delete or Archive Habit?",
-            isPresented: Binding(
-                get: { habitPendingDeletion != nil },
-                set: { if !$0 { habitPendingDeletion = nil } }
-            ),
-            presenting: habitPendingDeletion
-        ) { habit in
-            Button("Archive (Keep Historical Records)") {
-                store.deleteHabit(habit.id, deleteHistoricalRecords: false)
-                habitPendingDeletion = nil
-            }
-            Button("Permanently Delete Everything", role: .destructive) {
-                store.deleteHabit(habit.id, deleteHistoricalRecords: true)
-                habitPendingDeletion = nil
-            }
-            Button("Cancel", role: .cancel) {
-                habitPendingDeletion = nil
-            }
-        } message: { habit in
-            Text("Archiving removes '\(habit.name)' from active schedules while preserving all past daily completion records. Permanent deletion removes both the habit and its history.")
         }
     }
 }

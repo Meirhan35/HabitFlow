@@ -3,8 +3,10 @@ import SwiftUI
 // MARK: - Section 4, 5, 8, 9 & 23: Clean Dashboard View
 
 public struct DashboardView: View {
+    @AppStorage("interfaceLanguage") private var interfaceLanguage = "en"
     @EnvironmentObject private var store: HabitStore
     @EnvironmentObject private var timerManager: ActiveHabitTimerManager
+    @EnvironmentObject private var assistantHistory: AssistantChatStore
 
     public let palette: HabitFlowPalette
     public let onAddHabit: () -> Void
@@ -14,6 +16,7 @@ public struct DashboardView: View {
 
     @State private var expandedMissedDateKeys: Set<String> = []
     @State private var habitShowingEntriesPopover: UUID? = nil
+    @State private var quickGoalText = ""
 
     public init(
         palette: HabitFlowPalette,
@@ -39,24 +42,17 @@ public struct DashboardView: View {
 
     public var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                // 1. HEADER: Current date, day of the week, short welcome message, + Add Habit button
+            VStack(alignment: .leading, spacing: 20) {
                 dashboardHeader
-
-                // 2. DAILY PROGRESS OVERVIEW: Compact daily completion percentage, completed/remaining counts, simple progress bar
-                dailyProgressOverviewCard
-
+                HStack(alignment: .top, spacing: 16) {
+                    focusCard.frame(maxWidth: .infinity)
+                    todayRingCard.frame(width: 220)
+                }
                 if !store.goals.isEmpty { savedGoalsSection }
-
-                // 3. TODAY'S HABITS: Clean minimalistic rows with inline quick-add controls
+                habitStrip
+                activityOverview
                 todaysHabitsSection
-
-                // 4. TODAY'S REMAINING GOALS: Compact summary of unfinished work
                 todaysRemainingGoalsSection
-
-                // 5. MISSED DAYS — CONDITIONAL VISIBILITY:
-                // Appears ONLY AFTER ALL of today's scheduled habits have reached 100% of their target.
-                // Immediately hides if any habit is reduced or unchecked.
                 if store.isMissedDaysUnlockedOnDashboard {
                     conditionalMissedDaysSection
                         .transition(.asymmetric(
@@ -65,9 +61,9 @@ public struct DashboardView: View {
                         ))
                 }
             }
-            .padding(.horizontal, 32)
-            .padding(.vertical, 28)
-            .frame(maxWidth: 960, alignment: .leading)
+            .padding(.horizontal, 40)
+            .padding(.vertical, 32)
+            .frame(maxWidth: 1280, alignment: .leading)
             .frame(maxWidth: .infinity, alignment: .center)
         }
         .animation(.spring(response: 0.38, dampingFraction: 0.84), value: store.isMissedDaysUnlockedOnDashboard)
@@ -78,64 +74,285 @@ public struct DashboardView: View {
     private var dashboardHeader: some View {
         HStack(alignment: .center, spacing: 16) {
             VStack(alignment: .leading, spacing: 4) {
-                Text(formattedDayAndDate)
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundStyle(palette.accent)
+                Text(L10n.tr(formattedDayAndDate))
+                    .font(HabitFlowTypography.body(12, weight: .semibold))
+                    .foregroundStyle(palette.secondaryText)
                     .textCase(.uppercase)
 
-                Text(welcomeHeadline)
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
-                    .foregroundStyle(palette.primaryText)
+                HStack(spacing: 6) {
+                    Text(L10n.tr("Добрый"))
+                        .foregroundStyle(palette.primaryText)
+                    Text(L10n.tr(welcomeHeadline))
+                        .italic()
+                        .foregroundStyle(palette.accentText)
+                }
+                .font(HabitFlowTypography.display(44, weight: .bold))
 
                 if store.settings.showMotivationalGreeting {
-                    Text(welcomeSubtitle)
-                        .font(.system(size: 14, weight: .regular))
+                    Text(L10n.tr(welcomeSubtitle))
+                        .font(HabitFlowTypography.body(13))
                         .foregroundStyle(palette.secondaryText)
                 }
             }
 
             Spacer()
 
-            Button(action: onOpenAssistant) {
-                Label("Assistant", systemImage: "sparkles")
-                    .font(.system(size: 13, weight: .semibold))
+            HStack(spacing: 0) {
+                TextField(L10n.tr("Быстро добавить цель или привычку…"), text: $quickGoalText)
+                    .textFieldStyle(.plain)
+                    .font(HabitFlowTypography.body(13))
+                    .onSubmit(submitQuickGoal)
+                    .padding(.leading, 14)
+                Button(L10n.tr("Добавить"), action: submitQuickGoal)
+                    .font(HabitFlowTypography.body(12, weight: .semibold))
+                    .foregroundStyle(palette.onAccent)
+                    .padding(.horizontal, 14)
+                    .frame(height: 36)
+                    .background(Capsule().fill(palette.accent))
+                    .buttonStyle(.plain)
+                    .disabled(quickGoalText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
-            .buttonStyle(.bordered)
+            .frame(width: 280, height: 38)
+            .background(Capsule().fill(palette.cardBackground))
+            .overlay(Capsule().strokeBorder(palette.subtleBorder))
 
-            Button(action: onAddHabit) {
-                HStack(spacing: 7) {
-                    Image(systemName: "plus")
-                        .font(.system(size: 13, weight: .bold))
-                    Text("Add Habit")
-                        .font(.system(size: 13, weight: .semibold))
-                }
-                .foregroundStyle(.white)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(palette.accent)
-                )
+            Button {
+                store.settings.appearanceMode = palette.colorScheme == .dark ? .light : .dark
+            } label: {
+                Image(systemName: palette.colorScheme == .dark ? "sun.max" : "moon")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(palette.primaryText)
+                    .frame(width: 38, height: 38)
+                    .background(Circle().fill(palette.cardBackground))
+                    .overlay(Circle().strokeBorder(palette.subtleBorder))
             }
             .buttonStyle(.plain)
+            .help(L10n.tr("Сменить тему"))
         }
+    }
+
+    private func submitQuickGoal() {
+        let prompt = quickGoalText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !prompt.isEmpty else { return }
+        assistantHistory.pendingPrompt = prompt
+        quickGoalText = ""
+        onOpenAssistant()
+    }
+
+    private var focusCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text(L10n.tr("ФОКУС ДНЯ"))
+                    .font(HabitFlowTypography.body(11, weight: .semibold))
+                    .tracking(2)
+                    .foregroundStyle(Color.white.opacity(0.75))
+                Spacer()
+                if !unfinishedStatuses.isEmpty {
+                    Text(L10n.tr("СЕГОДНЯ"))
+                        .font(HabitFlowTypography.body(10, weight: .semibold))
+                        .foregroundStyle(palette.onAccent)
+                        .padding(.horizontal, 10).padding(.vertical, 5)
+                        .background(Capsule().fill(palette.accent))
+                }
+            }
+            if let focus = unfinishedStatuses.first {
+                Text(focus.habit.name)
+                    .font(HabitFlowTypography.display(34, weight: .bold))
+                    .foregroundStyle(.white)
+                    .lineLimit(2)
+                Text(L10n.tr(focus.progressText))
+                    .font(HabitFlowTypography.body(12))
+                    .foregroundStyle(Color.white.opacity(0.75))
+                SmoothProgressBar(fraction: focus.progressFraction, accentColor: palette.accent,
+                                  height: 10, trackColor: Color.white.opacity(0.18))
+                Button { store.quickAdd(for: focus.habit.id, on: store.currentDateKey) } label: {
+                    Label(L10n.tr("Отметить норму"), systemImage: "checkmark")
+                        .font(HabitFlowTypography.body(12, weight: .semibold))
+                        .foregroundStyle(palette.onAccent)
+                        .padding(.horizontal, 15).frame(height: 36)
+                        .background(Capsule().fill(palette.accent))
+                }
+                .buttonStyle(.plain)
+            } else {
+                Text(L10n.tr(todayOverview.totalScheduledCount == 0 ? "Выберите первую привычку" : "Всё на сегодня готово"))
+                    .font(HabitFlowTypography.display(32, weight: .bold))
+                    .foregroundStyle(.white)
+                Text(L10n.tr(todayOverview.totalScheduledCount == 0 ? "Добавьте привычку, чтобы начать." : "Вы выполнили все запланированные нормы."))
+                    .font(HabitFlowTypography.body(12))
+                    .foregroundStyle(Color.white.opacity(0.75))
+                Spacer(minLength: 32)
+                if todayOverview.totalScheduledCount == 0 {
+                    Button(L10n.tr("Добавить привычку"), action: onAddHabit)
+                        .buttonStyle(.borderedProminent)
+                }
+            }
+        }
+        .padding(22)
+        .frame(maxWidth: .infinity, minHeight: 220, alignment: .topLeading)
+        .background(RoundedRectangle(cornerRadius: 22).fill(palette.heroBackground))
+        .overlay(RoundedRectangle(cornerRadius: 22).strokeBorder(palette.subtleBorder))
+    }
+
+    private var todayRingCard: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(L10n.tr("Сегодня"))
+                .font(HabitFlowTypography.body(15, weight: .semibold))
+                .foregroundStyle(palette.primaryText)
+            Spacer(minLength: 0)
+            ZStack {
+                Circle().stroke(palette.progressTrack, lineWidth: 10)
+                Circle().trim(from: 0, to: todayOverview.progressFraction)
+                    .stroke(palette.accent, style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                    .rotationEffect(.degrees(-90))
+                Text(L10n.tr("\(Int(todayOverview.completionPercentage))%"))
+                    .font(HabitFlowTypography.number(32))
+                    .foregroundStyle(palette.primaryText)
+            }
+            .frame(width: 104, height: 104)
+            .frame(maxWidth: .infinity)
+            Spacer(minLength: 0)
+            Text(L10n.tr("\(todayOverview.completedCount) из \(todayOverview.totalScheduledCount) выполнено"))
+                .font(HabitFlowTypography.body(12))
+                .foregroundStyle(palette.secondaryText)
+        }
+        .padding(20)
+        .frame(height: 220)
+        .background(RoundedRectangle(cornerRadius: 22).fill(palette.cardBackground))
+        .overlay(RoundedRectangle(cornerRadius: 22).strokeBorder(palette.subtleBorder))
     }
 
     private var savedGoalsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Мои цели").font(.system(size: 18, weight: .bold, design: .rounded)).foregroundStyle(palette.primaryText)
-            ForEach(store.goals) { goal in
-                HStack(alignment: .top) {
-                    Image(systemName: "target").foregroundStyle(palette.accent)
-                    VStack(alignment: .leading, spacing: 3) {
-                        Text(goal.title).font(.system(size: 14, weight: .semibold)).foregroundStyle(palette.primaryText)
-                        Text("\(goal.target.formatted()) \(goal.unit) · до \(goal.deadline) · \(goal.milestones.count) этапов")
-                            .font(.system(size: 12)).foregroundStyle(palette.secondaryText)
+            Text(L10n.tr("Мои цели"))
+                .font(HabitFlowTypography.body(16, weight: .semibold))
+                .foregroundStyle(palette.primaryText)
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 230), spacing: 16)], spacing: 16) {
+                ForEach(store.goals.prefix(3)) { goal in
+                    VStack(alignment: .leading, spacing: 9) {
+                        Text(goal.title)
+                            .font(HabitFlowTypography.body(14, weight: .semibold))
+                            .foregroundStyle(palette.primaryText)
+                            .lineLimit(2)
+                        Text(L10n.tr("\(goal.target.formatted()) \(goal.unit)"))
+                            .font(HabitFlowTypography.number(31))
+                            .foregroundStyle(palette.accentText)
+                        Text(L10n.tr("До \(goal.deadline) · \(goal.milestones.count) этапов"))
+                            .font(HabitFlowTypography.body(12))
+                            .foregroundStyle(palette.secondaryText)
+                        Text(L10n.tr("Прогресс цели пока не отслеживается"))
+                            .font(HabitFlowTypography.body(11))
+                            .foregroundStyle(palette.secondaryText)
                     }
-                    Spacer()
-                }.padding(12).background(palette.secondarySurface, in: RoundedRectangle(cornerRadius: 10))
+                    .frame(maxWidth: .infinity, minHeight: 115, alignment: .topLeading)
+                    .habitFlowCard(palette: palette)
+                    .overlay(alignment: .leading) {
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(palette.priorityColor(goal.priority))
+                            .frame(width: 3)
+                            .padding(.vertical, 18)
+                    }
+                }
             }
-        }.habitFlowCard(palette: palette)
+        }
+    }
+
+    private var habitStrip: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text(L10n.tr("Привычки сегодня"))
+                .font(HabitFlowTypography.body(16, weight: .semibold))
+                .foregroundStyle(palette.primaryText)
+            if todayOverview.scheduledStatuses.isEmpty {
+                Text(L10n.tr("Пока нет запланированных привычек"))
+                    .font(HabitFlowTypography.body(12))
+                    .foregroundStyle(palette.secondaryText)
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 20) {
+                        ForEach(todayOverview.scheduledStatuses) { status in
+                            VStack(spacing: 6) {
+                                ZStack {
+                                    Circle()
+                                        .fill(status.isCompleted ? palette.accent : palette.secondarySurface)
+                                        .frame(width: 44, height: 44)
+                                    Circle()
+                                        .strokeBorder(status.isCompleted ? palette.accent : palette.subtleBorder, lineWidth: 1)
+                                        .frame(width: 44, height: 44)
+                                    Image(systemName: status.isCompleted ? "checkmark" : status.habit.icon)
+                                        .font(.system(size: 17, weight: .semibold))
+                                        .foregroundStyle(status.isCompleted ? palette.onAccent : palette.primaryText)
+                                }
+                                Text(status.habit.name)
+                                    .font(HabitFlowTypography.body(11, weight: .medium))
+                                    .foregroundStyle(palette.primaryText)
+                                    .lineLimit(1)
+                                    .frame(width: 86)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .habitFlowCard(palette: palette)
+    }
+
+    private var activityOverview: some View {
+        let days = Array(store.heatmapDaysLast365().suffix(42))
+        return HStack(alignment: .top, spacing: 16) {
+            VStack(alignment: .leading, spacing: 14) {
+                Text(L10n.tr("Активность"))
+                    .font(HabitFlowTypography.body(15, weight: .semibold))
+                    .foregroundStyle(palette.primaryText)
+                LazyVGrid(columns: Array(repeating: GridItem(.fixed(14), spacing: 5), count: 21), spacing: 5) {
+                    ForEach(days) { day in
+                        RoundedRectangle(cornerRadius: 3)
+                            .fill(heatmapColor(day))
+                            .frame(width: 14, height: 14)
+                            .help(L10n.tr("\(day.dateKey): \(Int(day.percentage))%"))
+                    }
+                }
+                HStack(spacing: 5) {
+                    Text(L10n.tr("Меньше"))
+                    ForEach(0..<5, id: \.self) { level in
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(palette.heatmapColors[level])
+                            .frame(width: 12, height: 12)
+                    }
+                    Text(L10n.tr("Больше"))
+                }
+                .font(HabitFlowTypography.body(10))
+                .foregroundStyle(palette.secondaryText)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .habitFlowCard(palette: palette)
+
+            VStack(alignment: .leading, spacing: 14) {
+                Text(L10n.tr("Неделя"))
+                    .font(HabitFlowTypography.body(15, weight: .semibold))
+                    .foregroundStyle(palette.primaryText)
+                HStack(alignment: .bottom, spacing: 8) {
+                    ForEach(Array(days.suffix(7))) { day in
+                        VStack(spacing: 5) {
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(day.dateKey == store.currentDateKey ? palette.accent : palette.chartBar)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: max(5, CGFloat(day.percentage) * 0.55))
+                            Text(L10n.tr(day.date.formatted(.dateTime.weekday(.narrow).locale(L10n.locale))))
+                                .font(HabitFlowTypography.body(10))
+                                .foregroundStyle(palette.secondaryText)
+                        }
+                    }
+                }
+                .frame(height: 75, alignment: .bottom)
+            }
+            .frame(width: 170, alignment: .leading)
+            .habitFlowCard(palette: palette)
+        }
+    }
+
+    private func heatmapColor(_ day: DailyCompletionPoint) -> Color {
+        guard day.scheduledCount > 0 else { return palette.heatmapColors[0] }
+        let level = min(4, max(1, Int(ceil(day.percentage / 25))))
+        return palette.heatmapColors[level]
     }
 
     private var formattedDayAndDate: String {
@@ -143,15 +360,16 @@ public struct DashboardView: View {
             return store.currentDateKey
         }
         let df = DateFormatter()
-        df.dateFormat = "EEEE, MMMM d, yyyy"
+        df.locale = L10n.locale
+        df.setLocalizedDateFormatFromTemplate("EEEE MMMM d yyyy")
         return df.string(from: date)
     }
 
     private var welcomeHeadline: String {
         let hour = Calendar.current.component(.hour, from: Date())
-        if hour < 12 { return "Good morning" }
-        if hour < 18 { return "Good afternoon" }
-        return "Good evening"
+        if hour < 12 { return "утро." }
+        if hour < 18 { return "день." }
+        return "вечер."
     }
 
     private var welcomeSubtitle: String {
@@ -173,21 +391,21 @@ public struct DashboardView: View {
 
         return VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .firstTextBaseline) {
-                Text("Daily Progress: \(Int(ov.completionPercentage))%")
+                Text(L10n.tr("Daily Progress: \(Int(ov.completionPercentage))%"))
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                     .foregroundStyle(palette.primaryText)
 
                 Spacer()
 
                 HStack(spacing: 14) {
-                    Label("\(ov.completedCount) of \(ov.totalScheduledCount) habits completed", systemImage: "checkmark.circle.fill")
+                    Label(L10n.tr("\(ov.completedCount) of \(ov.totalScheduledCount) habits completed"), systemImage: "checkmark.circle.fill")
                         .font(.system(size: 13, weight: .medium))
-                        .foregroundStyle(ov.allScheduledCompleted ? Color.green : palette.secondaryText)
+                        .foregroundStyle(ov.allScheduledCompleted ? palette.accent : palette.secondaryText)
 
                     if remainingHabitsCount > 0 {
-                        Text("•")
+                        Text(L10n.tr("•"))
                             .foregroundStyle(palette.secondaryText)
-                        Text("\(remainingHabitsCount) remaining")
+                        Text(L10n.tr("\(remainingHabitsCount) remaining"))
                             .font(.system(size: 13, weight: .medium))
                             .foregroundStyle(palette.secondaryText)
                     }
@@ -196,7 +414,7 @@ public struct DashboardView: View {
 
             SmoothProgressBar(
                 fraction: ov.progressFraction,
-                accentColor: ov.allScheduledCompleted ? .green : palette.accent,
+                accentColor: palette.accent,
                 height: 10,
                 trackColor: palette.secondarySurface
             )
@@ -209,13 +427,13 @@ public struct DashboardView: View {
     private var todaysHabitsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("Today's Habits")
+                Text(L10n.tr("Today's Habits"))
                     .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundStyle(palette.primaryText)
 
                 Spacer()
 
-                Text("\(todayOverview.scheduledStatuses.count) scheduled")
+                Text(L10n.tr("\(todayOverview.scheduledStatuses.count) scheduled"))
                     .font(.system(size: 12, weight: .medium))
                     .foregroundStyle(palette.secondaryText)
             }
@@ -225,10 +443,10 @@ public struct DashboardView: View {
                     Image(systemName: "sparkles")
                         .font(.system(size: 24))
                         .foregroundStyle(palette.accent)
-                    Text("No habits scheduled for today")
+                    Text(L10n.tr("No habits scheduled for today"))
                         .font(.system(size: 15, weight: .semibold))
                         .foregroundStyle(palette.primaryText)
-                    Text("Click + Add Habit to create your daily routine.")
+                    Text(L10n.tr("Click + Add Habit to create your daily routine."))
                         .font(.system(size: 13))
                         .foregroundStyle(palette.secondaryText)
                 }
@@ -269,14 +487,14 @@ public struct DashboardView: View {
     private var todaysRemainingGoalsSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text("Today's Remaining Goals")
+                Text(L10n.tr("Today's Remaining Goals"))
                     .font(.system(size: 15, weight: .bold, design: .rounded))
                     .foregroundStyle(palette.primaryText)
 
                 Spacer()
 
                 if todayOverview.totalEstimatedRemainingMinutes > 0 {
-                    Label("~\(todayOverview.totalEstimatedRemainingMinutes) min left", systemImage: "clock")
+                    Label(L10n.tr("~\(todayOverview.totalEstimatedRemainingMinutes) min left"), systemImage: "clock")
                         .font(.system(size: 12, weight: .medium))
                         .foregroundStyle(palette.secondaryText)
                 }
@@ -286,14 +504,14 @@ public struct DashboardView: View {
                 HStack(spacing: 10) {
                     Image(systemName: "checkmark.seal.fill")
                         .font(.system(size: 16))
-                        .foregroundStyle(.green)
-                    Text("All scheduled goals for today have been completed!")
+                        .foregroundStyle(palette.accent)
+                    Text(L10n.tr("All scheduled goals for today have been completed!"))
                         .font(.system(size: 13, weight: .medium))
                         .foregroundStyle(palette.primaryText)
                     Spacer()
                 }
             } else if unfinishedStatuses.isEmpty {
-                Text("No remaining goals scheduled for today.")
+                Text(L10n.tr("No remaining goals scheduled for today."))
                     .font(.system(size: 13))
                     .foregroundStyle(palette.secondaryText)
             } else {
@@ -303,7 +521,7 @@ public struct DashboardView: View {
                             Circle()
                                 .fill(palette.accent)
                                 .frame(width: 6, height: 6)
-                            Text(st.remainingSummaryText)
+                            Text(L10n.tr(st.remainingSummaryText))
                                 .font(.system(size: 13, weight: .medium))
                                 .foregroundStyle(palette.primaryText)
                             Spacer()
@@ -328,14 +546,14 @@ public struct DashboardView: View {
                     HStack(spacing: 8) {
                         Image(systemName: "lock.open.fill")
                             .font(.system(size: 12, weight: .bold))
-                            .foregroundStyle(.green)
-                        Text("Missed Days")
+                            .foregroundStyle(palette.accent)
+                        Text(L10n.tr("Missed Days"))
                             .font(.system(size: 16, weight: .bold, design: .rounded))
                             .foregroundStyle(palette.primaryText)
                     }
 
                     if !allMissed.isEmpty {
-                        Text("\(allMissed.count) previous missed days • \(totalMissedHabitsCount) unfinished habits")
+                        Text(L10n.tr("\(allMissed.count) previous missed days • \(totalMissedHabitsCount) unfinished habits"))
                             .font(.system(size: 12, weight: .medium))
                             .foregroundStyle(palette.secondaryText)
                     }
@@ -345,7 +563,7 @@ public struct DashboardView: View {
 
                 Button(action: onOpenAllMissedHistory) {
                     HStack(spacing: 5) {
-                        Text("View All History")
+                        Text(L10n.tr("View All History"))
                             .font(.system(size: 12, weight: .semibold))
                         Image(systemName: "arrow.right")
                             .font(.system(size: 11, weight: .semibold))
@@ -365,8 +583,8 @@ public struct DashboardView: View {
                 HStack(spacing: 10) {
                     Image(systemName: "sparkles")
                         .font(.system(size: 16))
-                        .foregroundStyle(.green)
-                    Text("You're all caught up!")
+                        .foregroundStyle(palette.accent)
+                    Text(L10n.tr("You're all caught up!"))
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundStyle(palette.primaryText)
                     Spacer()
@@ -392,13 +610,13 @@ public struct DashboardView: View {
                                         .foregroundStyle(palette.secondaryText)
                                         .frame(width: 14)
 
-                                    Text(record.friendlyTitle)
+                                    Text(L10n.tr(record.friendlyTitle))
                                         .font(.system(size: 13, weight: .semibold))
                                         .foregroundStyle(palette.primaryText)
 
                                     Spacer()
 
-                                    Text("\(record.missedOrPartialStatuses.count) unfinished • \(Int(record.completionPercentage))% day completion")
+                                    Text(L10n.tr("\(record.missedOrPartialStatuses.count) unfinished • \(Int(record.completionPercentage))% day completion"))
                                         .font(.system(size: 11, weight: .medium))
                                         .foregroundStyle(palette.secondaryText)
                                 }
@@ -412,15 +630,15 @@ public struct DashboardView: View {
                                             Circle()
                                                 .fill(st.state == .partial ? Color.orange : Color.red.opacity(0.8))
                                                 .frame(width: 6, height: 6)
-                                            Text("\(st.habit.name):")
+                                            Text(L10n.tr("\(st.habit.name):"))
                                                 .font(.system(size: 12, weight: .semibold))
                                                 .foregroundStyle(palette.primaryText)
                                             if st.state == .notStarted {
-                                                Text("Not completed")
+                                                Text(L10n.tr("Not completed"))
                                                     .font(.system(size: 12))
                                                     .foregroundStyle(palette.secondaryText)
                                             } else {
-                                                Text(st.progressText)
+                                                Text(L10n.tr(st.progressText))
                                                     .font(.system(size: 12))
                                                     .foregroundStyle(palette.secondaryText)
                                             }
@@ -448,6 +666,7 @@ public struct DashboardView: View {
 // MARK: - Dashboard Habit Row with Inline Quick-Add [-][+] & Multi-Entry Popover
 
 public struct DashboardHabitRowView: View {
+    @AppStorage("interfaceLanguage") private var interfaceLanguage = "en"
     @EnvironmentObject private var store: HabitStore
     @EnvironmentObject private var timerManager: ActiveHabitTimerManager
 
@@ -479,7 +698,7 @@ public struct DashboardHabitRowView: View {
                             .font(.system(size: 15, weight: .semibold))
                             .foregroundStyle(palette.primaryText)
 
-                        Text(status.habit.category)
+                        Text(L10n.tr(status.habit.category))
                             .font(.system(size: 10, weight: .semibold))
                             .foregroundStyle(palette.secondaryText)
                             .padding(.horizontal, 7)
@@ -493,7 +712,7 @@ public struct DashboardHabitRowView: View {
                             Button {
                                 isEntriesPopoverPresented.toggle()
                             } label: {
-                                Text("\(status.entries.count) entries")
+                                Text(L10n.tr("\(status.entries.count) entries"))
                                     .font(.system(size: 10, weight: .semibold))
                                     .foregroundStyle(palette.accent)
                                     .padding(.horizontal, 6)
@@ -508,20 +727,20 @@ public struct DashboardHabitRowView: View {
                     }
 
                     HStack(spacing: 10) {
-                        Text(status.progressText)
+                        Text(L10n.tr(status.progressText))
                             .font(.system(size: 13, weight: .medium))
-                            .foregroundStyle(status.isCompleted ? Color.green : palette.primaryText)
+                            .foregroundStyle(status.isCompleted ? palette.accent : palette.primaryText)
 
                         if !status.isCompleted && status.habit.measurementType != .checkbox {
-                            Text("•")
+                            Text(L10n.tr("•"))
                                 .foregroundStyle(palette.secondaryText)
-                            Text("\(NumberFormattingHelper.format(status.remainingAmount)) \(status.habit.unit) left")
+                            Text(L10n.tr("\(NumberFormattingHelper.format(status.remainingAmount)) \(status.habit.unit) left"))
                                 .font(.system(size: 12))
                                 .foregroundStyle(palette.secondaryText)
                         } else if status.isCompleted {
-                            Text("• Completed")
+                            Text(L10n.tr("• Completed"))
                                 .font(.system(size: 12, weight: .semibold))
-                                .foregroundStyle(.green)
+                                .foregroundStyle(palette.accent)
                         }
                     }
                 }
@@ -541,7 +760,7 @@ public struct DashboardHabitRowView: View {
                         HStack(spacing: 4) {
                             Image(systemName: isTimingThis && timerManager.isRunning ? "stop.fill" : "timer")
                                 .font(.system(size: 11, weight: .semibold))
-                            Text(isTimingThis ? timerManager.formattedElapsed : "Timer")
+                            Text(L10n.tr(isTimingThis ? timerManager.formattedElapsed : "Timer"))
                                 .font(.system(size: 11, weight: .semibold, design: isTimingThis ? .monospaced : .default))
                         }
                         .foregroundStyle(isTimingThis ? .white : palette.secondaryText)
@@ -553,7 +772,7 @@ public struct DashboardHabitRowView: View {
                         )
                     }
                     .buttonStyle(.plain)
-                    .help("Start or log built-in duration timer")
+                    .help(L10n.tr("Start or log built-in duration timer"))
                 }
 
                 // Multi-entry log button
@@ -570,7 +789,7 @@ public struct DashboardHabitRowView: View {
                         )
                 }
                 .buttonStyle(.plain)
-                .help("View or add multiple daily entries")
+                .help(L10n.tr("View or add multiple daily entries"))
                 .popover(isPresented: $isEntriesPopoverPresented, arrowEdge: .bottom) {
                     multiEntriesPopoverContent
                 }
@@ -589,10 +808,10 @@ public struct DashboardHabitRowView: View {
         }
         .habitFlowCard(palette: palette, padding: 14, cornerRadius: 12)
         .contextMenu {
-            Button("Edit Habit...") { onEditHabit() }
-            Button("Manage Today's Entries...") { isEntriesPopoverPresented = true }
+            Button(L10n.tr("Edit Habit...")) { onEditHabit() }
+            Button(L10n.tr("Manage Today's Entries...")) { isEntriesPopoverPresented = true }
             Divider()
-            Button(status.habit.isPaused ? "Resume Habit" : "Pause Habit") {
+            Button(L10n.tr(status.habit.isPaused ? "Resume Habit" : "Pause Habit")) {
                 store.togglePauseHabit(status.habit.id)
             }
         }
@@ -605,7 +824,7 @@ public struct DashboardHabitRowView: View {
                 HStack(spacing: 6) {
                     Image(systemName: status.isCompleted ? "checkmark.circle.fill" : "circle")
                         .font(.system(size: 13, weight: .semibold))
-                    Text(status.isCompleted ? "Completed" : "Complete")
+                    Text(L10n.tr(status.isCompleted ? "Completed" : "Complete"))
                         .font(.system(size: 12, weight: .semibold))
                 }
                 .foregroundStyle(status.isCompleted ? .white : palette.primaryText)
@@ -613,7 +832,7 @@ public struct DashboardHabitRowView: View {
                 .padding(.vertical, 7)
                 .background(
                     RoundedRectangle(cornerRadius: 8, style: .continuous)
-                        .fill(status.isCompleted ? Color.green : palette.secondarySurface)
+                        .fill(status.isCompleted ? palette.accent : palette.secondarySurface)
                 )
             }
             .buttonStyle(.plain)
@@ -632,14 +851,14 @@ public struct DashboardHabitRowView: View {
                     }
                     .buttonStyle(.plain)
                     .disabled(status.completedAmount <= 0)
-                    .help("Subtract \(NumberFormattingHelper.format(status.quickAddIncrement)) \(status.habit.unit)")
+                    .help(L10n.tr("Subtract \(NumberFormattingHelper.format(status.quickAddIncrement)) \(status.habit.unit)"))
                 }
 
                 Button(action: onQuickAdd) {
                     HStack(spacing: 4) {
                         Image(systemName: "plus")
                             .font(.system(size: 11, weight: .bold))
-                        Text(NumberFormattingHelper.format(status.quickAddIncrement))
+                        Text(L10n.tr(NumberFormattingHelper.format(status.quickAddIncrement)))
                             .font(.system(size: 12, weight: .bold))
                     }
                     .foregroundStyle(.white)
@@ -647,11 +866,11 @@ public struct DashboardHabitRowView: View {
                     .frame(height: 28)
                     .background(
                         RoundedRectangle(cornerRadius: 7, style: .continuous)
-                            .fill(status.isCompleted ? Color.green : palette.accent)
+                            .fill(status.isCompleted ? palette.accent : palette.accent)
                     )
                 }
                 .buttonStyle(.plain)
-                .help("Quick add +\(NumberFormattingHelper.format(status.quickAddIncrement)) \(status.habit.unit)")
+                .help(L10n.tr("Quick add +\(NumberFormattingHelper.format(status.quickAddIncrement)) \(status.habit.unit)"))
             }
         }
     }
@@ -659,10 +878,10 @@ public struct DashboardHabitRowView: View {
     private var multiEntriesPopoverContent: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("\(status.habit.name) — Today's Entries")
+                Text(L10n.tr("\(status.habit.name) — Today's Entries"))
                     .font(.system(size: 13, weight: .bold))
                 Spacer()
-                Text("Total: \(status.progressText)")
+                Text(L10n.tr("Total: \(status.progressText)"))
                     .font(.system(size: 12, weight: .semibold))
                     .foregroundStyle(palette.accent)
             }
@@ -670,7 +889,7 @@ public struct DashboardHabitRowView: View {
             Divider()
 
             if status.entries.isEmpty {
-                Text("No progress entries logged today yet.")
+                Text(L10n.tr("No progress entries logged today yet."))
                     .font(.system(size: 12))
                     .foregroundStyle(.secondary)
                     .padding(.vertical, 6)
@@ -680,14 +899,14 @@ public struct DashboardHabitRowView: View {
                         ForEach(status.entries) { entry in
                             HStack {
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(entry.label)
+                                    Text(L10n.tr(entry.label))
                                         .font(.system(size: 12, weight: .semibold))
                                     Text(entry.timestamp, style: .time)
                                         .font(.system(size: 10))
                                         .foregroundStyle(.secondary)
                                 }
                                 Spacer()
-                                Text("+\(NumberFormattingHelper.format(entry.amount)) \(status.habit.unit)")
+                                Text(L10n.tr("+\(NumberFormattingHelper.format(entry.amount)) \(status.habit.unit)"))
                                     .font(.system(size: 12, weight: .bold))
                                 Button {
                                     store.deleteProgressEntry(entry.id)
@@ -707,24 +926,24 @@ public struct DashboardHabitRowView: View {
 
             Divider()
 
-            Text("Add Specific Session Entry")
+            Text(L10n.tr("Add Specific Session Entry"))
                 .font(.system(size: 11, weight: .semibold))
                 .foregroundStyle(.secondary)
 
             HStack(spacing: 8) {
-                Picker("", selection: $customEntryLabelText) {
-                    Text("Morning").tag("Morning")
-                    Text("Afternoon").tag("Afternoon")
-                    Text("Evening").tag("Evening")
+                Picker(L10n.tr(""), selection: $customEntryLabelText) {
+                    Text(L10n.tr("Morning")).tag("Morning")
+                    Text(L10n.tr("Afternoon")).tag("Afternoon")
+                    Text(L10n.tr("Evening")).tag("Evening")
                 }
                 .labelsHidden()
                 .frame(width: 110)
 
-                TextField("Amount (\(status.habit.unit))", text: $customEntryAmountText)
+                TextField(L10n.tr("Amount (\(status.habit.unit))"), text: $customEntryAmountText)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 90)
 
-                Button("Add") {
+                Button(L10n.tr("Add")) {
                     if let val = Double(customEntryAmountText), val > 0 {
                         store.addProgressEntry(
                             for: status.habit.id,

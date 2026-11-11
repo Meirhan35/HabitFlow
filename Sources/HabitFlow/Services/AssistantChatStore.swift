@@ -3,6 +3,7 @@ import Combine
 
 @MainActor
 public final class AssistantChatStore: ObservableObject {
+    @Published public var pendingPrompt: String?
     @Published public var chats: [AssistantChat] = [] {
         didSet { save() }
     }
