@@ -25,6 +25,7 @@ public struct AssistantPlan: Codable, Equatable {
     public struct Idea: Codable, Equatable, Identifiable {
         public var title: String
         public var description: String
+        public var url: String?
         public var id: String { title + description }
     }
     public struct RealityCheck: Codable, Equatable {
@@ -58,7 +59,12 @@ public struct AssistantPlan: Codable, Equatable {
                   Self.validTime(habit.time),
                   !(["weekly", "custom"].contains(habit.frequency) && habit.days.isEmpty) else { throw AssistantPlanError.invalid }
         }
-        for idea in ideas { try required(idea.title); try required(idea.description) }
+        for idea in ideas {
+            try required(idea.title); try required(idea.description)
+            if let url = idea.url, (URL(string: url)?.scheme != "https" || URL(string: url)?.host == nil) {
+                throw AssistantPlanError.invalid
+            }
+        }
     }
 
     private static func validDate(_ value: String) -> Bool {

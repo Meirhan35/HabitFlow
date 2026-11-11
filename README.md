@@ -28,6 +28,8 @@ HabitFlow_macOS/
 
 ## Opening and Running on macOS
 
+The goal assistant uses Gemini 3.8 Flash. Set `GEMINI_API_KEY` in the app's environment, or put your API key in `Sources/HabitFlow/Resources/GeminiAPIKey.txt` before building. The key file is ignored by Git; keep it private. Rebuild after changing the file.
+
 1. **In Xcode (macOS 14 Sonoma or later)**:
    - Open `Package.swift` directly in Xcode (`open Package.swift`), select the **HabitFlow** scheme and **My Mac** destination, and press **⌘R** to build and run.
    - Press **⌘U** to run the unit test suite (`HabitFlowTests`).

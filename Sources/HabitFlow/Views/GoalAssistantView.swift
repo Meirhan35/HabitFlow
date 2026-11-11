@@ -77,7 +77,7 @@ public struct GoalAssistantView: View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Assistant").font(.system(size: 22, weight: .bold, design: .rounded)).foregroundStyle(palette.primaryText)
-                Text("Планируйте цели и привычки вместе с Groq").font(.system(size: 12)).foregroundStyle(palette.secondaryText)
+                Text("Планируйте цели и привычки вместе с Gemini").font(.system(size: 12)).foregroundStyle(palette.secondaryText)
             }
             Spacer()
         }.padding(.horizontal, 24).padding(.vertical, 16)
@@ -130,6 +130,11 @@ public struct GoalAssistantView: View {
             Text("Идеи").font(.system(size: 13, weight: .bold))
             ForEach(Array(plan.ideas.enumerated()), id: \.offset) { index, item in
                 part("idea-\(index)", title: item.title, detail: item.description)
+                if let address = item.url, let url = URL(string: address) {
+                    Link(address, destination: url)
+                        .font(.system(size: 12))
+                        .lineLimit(1)
+                }
             }
             Text("Реалистичность: \(plan.reality_check.level)").font(.system(size: 13, weight: .bold))
             Text(plan.reality_check.comment).font(.system(size: 12)).foregroundStyle(palette.secondaryText)
